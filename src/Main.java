@@ -1,9 +1,11 @@
+import java.io.File;
+
 
 public class Main {
 
 	public static void main(String[] args) {
-		JDOM2 jdom = new JDOM2();
-		jdom.listePrenom();
+		File repertoire = new File("C:\\Users\\Aymon\\Desktop\\Test");
+		NodeMethod.listePrenom(repertoire);
 	}
 
 }
