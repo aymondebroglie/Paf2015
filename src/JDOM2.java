@@ -5,16 +5,18 @@ import org.jdom2.*;
 import org.jdom2.input.SAXBuilder;
 
 
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Iterator;
 
 public class JDOM2
 {
    static org.jdom2.Document document;
-
-   public static void main(String[] args)
+   static ArrayList<String> listeFinal;
+   public static void listePrenom()
    {
-  
+   
    File repertoire =new File("C:\\Users\\Aymon\\Desktop\\Test");
    listerRepertoire(repertoire);
      		
@@ -36,6 +38,7 @@ public class JDOM2
          Element courant = (Element)i.next();
          //On affiche le nom de l’élément courant
          System.out.println(courant.getChild("addressbook").getChild("first-name").getText());
+         listeFinal.add(courant.getChild("addressbook").getChild("first-name").getText());
       }
    }
    
