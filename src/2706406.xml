@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fr-patent-document lang="fr" dtd-version="v1.5.1" country="FR" doc-number="2706406" kind="B1" id="9307182" status="INSCRI">
+<fr-bibliographic-data>
+<fr-publication-data>
+<fr-publication-reference>
+<document-id>
+<country>FR</country>
+<doc-number>2706406</doc-number>
+<kind>B1</kind>
+<date>19941223</date>
+</document-id>
+<fr-bopinum>1994-51</fr-bopinum>
+<fr-nature>Brevet</fr-nature>
+</fr-publication-reference>
+</fr-publication-data>
+<application-reference appl-type="">
+<document-id>
+<country>FR</country>
+<doc-number>9307182</doc-number>
+<date>19930615</date>
+</document-id>
+</application-reference>
+<invention-title lang="fr">VEHICULE ROUTIER OU FEROVIAIRE ET SON PROCEDE D'ASSEMBLAGE</invention-title>
+<parties>
+<applicants>
+<applicant app-type="applicant" designation="all" sequence="1">
+<addressbook lang="fr">
+<last-name>GEC ALSTHOM TRANSPORT SA</last-name>
+<first-name/>
+<middle-name/>
+<iid>389191982</iid>
+<address>
+<address-1>38 AVENUE KLEBER</address-1>
+<city>PARIS</city>
+<postcode>75116</postcode>
+<country>FR</country>
+</address>
+</addressbook>
+</applicant>
+</applicants>
+<inventors>
+<inventor designation="all" sequence="1">
+<addressbook lang="fr">
+<last-name>JEUNEHOMME</last-name>
+<first-name>SYLVIE</first-name>
+<middle-name/>
+<iid/>
+<address>
+<address-1>CO GEC ALSTHOM TRANSPORT SA
+BP 359</address-1>
+<city>LA ROCHELLE CEDEX</city>
+<postcode>17001</postcode>
+<country>FR</country>
+</address>
+</addressbook>
+</inventor>
+<inventor designation="all" sequence="2">
+<addressbook lang="fr">
+<last-name>EVENNOU</last-name>
+<first-name>PATRICK</first-name>
+<middle-name/>
+<iid/>
+<address>
+<address-1>CO GEC ALSTHOM TRANSPORT SA
+BP 359</address-1>
+<city>LA ROCHELLE CEDEX</city>
+<postcode>17001</postcode>
+<country>FR</country>
+</address>
+</addressbook>
+</inventor>
+<inventor designation="all" sequence="3">
+<addressbook lang="fr">
+<last-name>HACHET</last-name>
+<first-name>JOEL</first-name>
+<middle-name/>
+<iid/>
+<address>
+<address-1>LE POMMEROU</address-1>
+<city>LA JARRIE</city>
+<postcode>17220</postcode>
+<country>FR</country>
+</address>
+</addressbook>
+</inventor>
+</inventors>
+<agents>
+<agent rep-type="agent" sequence="1">
+<addressbook lang="fr">
+<last-name>ALSTOM</last-name>
+<first-name/>
+<middle-name/>
+<iid>419390463</iid>
+<address>
+<address-1>LEGAL INTELLECTUAL PROPERTY
+3 AV ANDRE MALRAUX</address-1>
+<city>LEVALLOIS PERRET</city>
+<postcode>92300</postcode>
+<country>FR</country>
+</address>
+</addressbook>
+</agent>
+</agents>
+</parties>
+<fr-owners>
+<fr-owner sequence="1">
+<addressbook lang="fr">
+<last-name>ALSTOM TRANSPORT TECHNOLOGIES</last-name>
+<first-name/>
+<middle-name/>
+<iid>752364778</iid>
+<address>
+<address-1>3, AVENUE ANDRE MALRAUX</address-1>
+<city>92300 LEVALLOIS-PERRET</city>
+<postcode/>
+<country>FR</country>
+</address>
+</addressbook>
+</fr-owner>
+</fr-owners>
+<classification-ipc>
+<edition>5</edition>
+<main-classification>B61D 17/04</main-classification>
+<further-classification>B62D 27/06</further-classification>
+</classification-ipc>
+</fr-bibliographic-data>
+<fr-patent-life>
+<fr-inscription>
+<registered-number>0158590</registered-number>
+<date>20070516</date>
+<fr-code-inscription>DA</fr-code-inscription>
+<fr-nature-inscription>Décision rapportant la décision de constatation de déchéance</fr-nature-inscription>
+<fr-bopinum/>
+</fr-inscription>
+<fr-inscription>
+<registered-number>0197628</registered-number>
+<date>20131018</date>
+<fr-code-inscription>CD</fr-code-inscription>
+<fr-nature-inscription>Changement de nom, de dénomination</fr-nature-inscription>
+<fr-bopinum>2013-47</fr-bopinum>
+</fr-inscription>
+<fr-inscription>
+<registered-number>0197628</registered-number>
+<date>20131018</date>
+<fr-code-inscription>CA</fr-code-inscription>
+<fr-nature-inscription>Changement d'adresse du titulaire</fr-nature-inscription>
+<fr-bopinum>2013-47</fr-bopinum>
+</fr-inscription>
+<fr-inscription>
+<registered-number>0202588</registered-number>
+<date>20140926</date>
+<fr-code-inscription>TO</fr-code-inscription>
+<fr-nature-inscription>Transmission totale de propriété</fr-nature-inscription>
+<fr-bopinum>2014-44</fr-bopinum>
+</fr-inscription>
+<fr-date-availability>
+<fr-date-search-completed>
+<date>19941223</date>
+<fr-bopinum>1994-51</fr-bopinum>
+</fr-date-search-completed>
+<fr-date-granted>
+<document-id>
+<country/>
+<doc-number/>
+<kind>B1</kind>
+<name/>
+<date>19950713</date>
+</document-id>
+<fr-bopinum>1995-28</fr-bopinum>
+</fr-date-granted>
+</fr-date-availability>
+</fr-patent-life>
+</fr-patent-document>
