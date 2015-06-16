@@ -19,11 +19,11 @@ public class Main {
 	
 		int s = list.size();
 		
-		for( int i = 0; i < s; i++){
+		/*for( int i = 0; i < s; i++){
 			System.out.println("prenom = "+list.get(i).getPrenom()+", genre = "+list.get(i).getGenre()+"");
 		}
 		
-		/*ArrayList<String> list1 = new ArrayList<String>();
+		ArrayList<String> list1 = new ArrayList<String>();
 		list1.add("seaghdh"); //h
 		list1.add("jaffe"); //f
 		list1.add("ezar"); //h
