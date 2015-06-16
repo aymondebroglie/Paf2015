@@ -20,12 +20,6 @@ public class ListePrenom {
 	
 	
 	
-	
-	
-	
-	
-	
-	
 	public final void initTextFile(String filename){
 		
 		
@@ -63,6 +57,20 @@ public class ListePrenom {
 						if( intermediaire[1].compareTo("f,m") != 0){
 							//System.out.println("je passe le if");
 							Prenom prenom = new Prenom();
+							
+							intermediaire[0] = intermediaire[0].replaceAll("é", "e");
+							intermediaire[0] = intermediaire[0].replaceAll("è", "e");
+							intermediaire[0] = intermediaire[0].replaceAll("ê", "e");
+							intermediaire[0] = intermediaire[0].replaceAll("ë", "e");
+							intermediaire[0] = intermediaire[0].replaceAll("à", "a");
+							intermediaire[0] = intermediaire[0].replaceAll("ù", "u");
+							intermediaire[0] = intermediaire[0].replaceAll("û", "u");
+							intermediaire[0] = intermediaire[0].replaceAll("ü", "u");
+							intermediaire[0] = intermediaire[0].replaceAll("ö", "o");
+							intermediaire[0] = intermediaire[0].replaceAll("ô", "o");
+							intermediaire[0] = intermediaire[0].replaceAll("î", "i");
+							intermediaire[0] = intermediaire[0].replaceAll("ï", "i");
+							
 							prenom.setGenre(intermediaire[1]);
 							prenom.setPrenom(intermediaire[0]);
 							ListePrenom.add(prenom);
