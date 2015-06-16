@@ -1,11 +1,14 @@
 import java.util.ArrayList;
 
+import java.io.*;
+
+
 
 public class Main {
 
 	public static void main(String[] args) {
-		JDOM2 jdom = new JDOM2();
-		jdom.listePrenom();
+		File repertoire = new File("C:\\Users\\Aymon\\Desktop\\Test\\");
+		JDOM2.listePrenom(repertoire);
 		
 		
 		//code pour la base de donnée
