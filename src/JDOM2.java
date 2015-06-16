@@ -39,8 +39,7 @@ public class JDOM2 {
              String[] part= s.split(" " );
              String[] part1= part[0].split("-" );
                 listeFinal.add(part1[0].toLowerCase());
-			System.out.println(courant.getChild("addressbook")
-					.getChild("first-name").getText());
+			System.out.println(part1[0].toLowerCase());
 			
 		}
 	}
