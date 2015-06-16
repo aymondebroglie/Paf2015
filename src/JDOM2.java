@@ -8,18 +8,21 @@ import java.util.List;
 import java.util.Iterator;
 
 public class JDOM2 {
-	static org.jdom2.Document document;
-	static ArrayList<String> listeFinal;
+	private org.jdom2.Document document;
+	private ArrayList<String> listeFinal = new ArrayList<String>();
 
-	public static void listePrenom(File repertoire) {
-
-	
-		listerRepertoire(repertoire);
+	public JDOM2() {
 
 	}
 
+	public ArrayList<String> listePrenom(File repertoire) {
+
+		listerRepertoire(repertoire);
+		return listeFinal;
+	}
+
 	// Ajouter cette méthodes à la classe JDOM2
-	static void afficheALL(Element racine) {
+	private void afficheALL(Element racine) {
 		// On crée une List contenant tous les noeuds "etudiant" de l'Element
 		// racine
 		List listEtudiants = racine.getChildren("inventor");
@@ -34,11 +37,11 @@ public class JDOM2 {
 			System.out.println(courant.getChild("addressbook")
 					.getChild("first-name").getText());
 			listeFinal.add(courant.getChild("addressbook")
-					.getChild("first-name").getText());
+					.getChild("first-name").getText().toLowerCase());
 		}
 	}
 
-	public static void listerRepertoire(File repertoire) {
+	private void listerRepertoire(File repertoire) {
 
 		String[] listefichiers;
 
@@ -69,9 +72,11 @@ public class JDOM2 {
 					racine = racine.getChild("inventors");
 					racine.getAttribute("inventors");
 					afficheALL(racine);
+
 				} catch (Exception e) {
 				}
 			}
 		}
+
 	}
 }
