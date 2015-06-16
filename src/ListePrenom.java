@@ -105,5 +105,56 @@ public class ListePrenom {
 			}
 			
 		}
+	
+	public Resultat getStat(ArrayList<String> listeACompare){
+		
+		
+		int s1 = listeACompare.size();
+		int s2 = ListePrenom.size();
+		
+		int find = 0;
+		int j = 0;
+		
+		double m = 0;
+		double f = 0;
+		double u = 0;
+		
+		for(int i = 0; i < s1; i++){
+			//System.out.println("boucle for");
+			while(find == 0 && j < s2){				
+				
+				//System.out.println("boucle while");
+				if(listeACompare.get(i).compareTo(ListePrenom.get(j).getPrenom()) == 0){					
+					find = 1;
+					
+					if(ListePrenom.get(j).getGenre().compareTo("m") == 0){
+						m = m +1;
+					}
+					
+					else{
+						f = f +1;
+					}
+				}
+				
+				j = j+1;
+			}
+			
+			if (j == s2){
+				u = u+1;
+			}
+			
+			j = 0;
+			find = 0;
+		}
+		
+		m = (m/s1)*100;
+		f = (f/s1)*100;
+		u = (u/s1)*100;
+		
+		Resultat resultat = new Resultat(m,f,u);
+		
+		
+		return resultat;
+	}
 }
 
