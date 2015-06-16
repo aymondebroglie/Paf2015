@@ -21,21 +21,16 @@ public class Main {
 	
 		int s = list.size();
 		
-		for( int i = 0; i < s; i++){
+		/*for( int i = 0; i < s; i++){
 			System.out.println("prenom = "+list.get(i).getPrenom()+", genre = "+list.get(i).getGenre()+"");
-		}
+		}*/
 		
-		/*ArrayList<String> list1 = new ArrayList<String>();
-		list1.add("seaghdh"); //h
-		list1.add("jaffe"); //f
-		list1.add("ezar"); //h
-		list1.add("maximilienne"); //f
-		list1.add("pipi");
-		//list1.add("caca");*/
+		
+		
 		
 		Resultat resultat = listeprenom.getStat(list1);
 		//System.out.println(list.get(200).getPrenom());
-		System.out.println("m = "+resultat.getPourcentageHomme()+", f = "+resultat.getPourcentageFemme()+", u = "+resultat.getPourcentageIndetermine()+"");*/
+		System.out.println("m = "+resultat.getPourcentageHomme()+", f = "+resultat.getPourcentageFemme()+", u = "+resultat.getPourcentageIndetermine()+"");
 	}
 
 }

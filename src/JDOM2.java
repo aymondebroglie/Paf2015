@@ -34,10 +34,14 @@ public class JDOM2 {
 			// sélectionner un nœud fils, modifier du texte, etc...
 			Element courant = (Element) i.next();
 			// On affiche le nom de l’élément courant
+			 String s= courant.getChild("addressbook")
+						.getChild("first-name").getText();
+             String[] part= s.split(" " );
+             String[] part1= part[0].split("-" );
+                listeFinal.add(part1[0].toLowerCase());
 			System.out.println(courant.getChild("addressbook")
 					.getChild("first-name").getText());
-			listeFinal.add(courant.getChild("addressbook")
-					.getChild("first-name").getText().toLowerCase());
+			
 		}
 	}
 
