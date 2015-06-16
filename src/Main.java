@@ -35,7 +35,7 @@ public class Main {
 		
 		Resultat resultat = listeprenom.getStat(list1);
 		//System.out.println(list.get(200).getPrenom());
-		System.out.println("m = "+resultat.getPourcentageHomme()+", f = "+resultat.getPourcentageFemme()+", u = "+resultat.getPourcentageIndetermine()+"");*/
+		//System.out.println("m = "+resultat.getPourcentageHomme()+", f = "+resultat.getPourcentageFemme()+", u = "+resultat.getPourcentageIndetermine()+"");*/
 	}
 
 }

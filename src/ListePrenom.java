@@ -140,7 +140,7 @@ public class ListePrenom {
 						m = m +1;
 					}
 					
-					else if (ListePrenom.get(j).getGenre().compareTo("m") == 0){
+					else if (ListePrenom.get(j).getGenre().compareTo("f") == 0){
 						f = f +1;
 					}
 					else {

@@ -5,6 +5,8 @@ public class Resultat {
 	private double pourcentageFemme;
 	private double pourcentageIndetermine;
 	private double pourcentageMixte;
+	private double normaliseHomme;
+	private double normaliseFemme;
 	
 	public Resultat(double pourcentageHomme, double pourcentageFemme, double pourcentageIndetermine, double pourcentageMixte){
 		
@@ -12,6 +14,13 @@ public class Resultat {
 		this.pourcentageHomme = pourcentageHomme;
 		this.pourcentageIndetermine = pourcentageIndetermine;
 		this.pourcentageMixte = pourcentageMixte;
+		this.normaliseHomme = 0;
+		this.normaliseFemme = 0;
+	}
+	
+	public void calculNormalise(){
+		normaliseHomme = (pourcentageHomme + pourcentageHomme*pourcentageMixte)*(100 - pourcentageIndetermine)/100;
+		normaliseFemme = (pourcentageFemme + pourcentageFemme*pourcentageMixte)*(100 - pourcentageIndetermine)/100;
 	}
 
 	public final double getPourcentageHomme() {
@@ -28,6 +37,14 @@ public class Resultat {
 	
 	public final double getPourcentageMixte() {
 		return pourcentageMixte;
+	}
+	
+	public final double getNormaliseHomme() {
+		return normaliseHomme;
+	}
+	
+	public final double getNormaliseFemme() {
+		return normaliseFemme;
 	}
 
 	public final void setPourcentageFemme(double pourcentageFemme) {
