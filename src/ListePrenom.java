@@ -53,8 +53,8 @@ public class ListePrenom {
 				//System.out.println("prenom = "+intermediaire[0]+", genre = "+intermediaire[1]+"");
 					
 					
-					if( intermediaire[1].compareTo("m,f") != 0){
-						if( intermediaire[1].compareTo("f,m") != 0){
+					//if( intermediaire[1].compareTo("m,f") != 0){
+					//	if( intermediaire[1].compareTo("f,m") != 0){
 							//System.out.println("je passe le if");
 							Prenom prenom = new Prenom();
 							
@@ -74,8 +74,8 @@ public class ListePrenom {
 							prenom.setGenre(intermediaire[1]);
 							prenom.setPrenom(intermediaire[0]);
 							ListePrenom.add(prenom);
-						}
-					}
+					//	}
+					//}
 					
 					lineToRead = br.readLine();
 					
@@ -125,7 +125,8 @@ public class ListePrenom {
 		
 		double m = 0;
 		double f = 0;
-		double u = 0;
+		double u1 = 0;
+		double u2 = 0;
 		
 		for(int i = 0; i < s1; i++){
 			//System.out.println("boucle for");
@@ -139,8 +140,11 @@ public class ListePrenom {
 						m = m +1;
 					}
 					
-					else{
+					else if (ListePrenom.get(j).getGenre().compareTo("m") == 0){
 						f = f +1;
+					}
+					else {
+						u1 = u1 +1;
 					}
 				}
 				
@@ -148,7 +152,7 @@ public class ListePrenom {
 			}
 			
 			if (j == s2){
-				u = u+1;
+				u2 = u2+1;
 			}
 			
 			j = 0;
@@ -157,9 +161,10 @@ public class ListePrenom {
 		
 		m = (m/s1)*100;
 		f = (f/s1)*100;
-		u = (u/s1)*100;
+		u1 = (u1/s1)*100;
+		u2 = (u2/s1)*100;
 		
-		Resultat resultat = new Resultat(m,f,u);
+		Resultat resultat = new Resultat(m,f,u2, u1);
 		
 		
 		return resultat;
