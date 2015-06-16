@@ -79,8 +79,8 @@ public class Recherche {
                         }
                         }
                         
-                        for (int j=0; j<resultat.size(); j++)
-                        	System.out.println(resultat.get(j));
+                       // for (int j=0; j<resultat.size(); j++)
+                        	//System.out.println(resultat.get(j));
                        
                         } catch (Exception e) {
                         e.printStackTrace();
