@@ -69,7 +69,7 @@ public class CalculOccurenceVille {
 		
 		u = s2 - 1;
 		
-		while(resultat.get(u).getPourcentage() > pourcentage && u >= s2){
+		while(resultat.get(u).getPourcentage() > pourcentage && u >= 0){
 			resultat2.add(resultat.get(u));
 			u = u - 1;
 		}
