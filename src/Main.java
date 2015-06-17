@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.io.*;
 
 
@@ -7,12 +9,17 @@ public class Main {
 
 	public static void main(String[] args) {
 		ArrayList<String> list1; 
-		Recherche rech = new Recherche("fr-patent-document","city");
+		Recherche rech = new Recherche("fr-patent-document","postcode");
 		list1 = rech.recherche();
-		ArrayList<SebVille> occurence = CalculOccurenceVille.calculOccurenceVille(list1, 0);
+		String c = list1.get(10);
+		list1.removeAll(Collections.singleton(c));
+		
+		/*ArrayList<SebVille> occurence = CalculOccurenceVille.calculOccurenceVille(list1, 0);
 		for (int j=0; j<occurence.size(); j++){
         	System.out.println(occurence.get(j).getNomVille());
-		System.out.println(occurence.get(j).getPourcentage());
+		System.out.println(occurence.get(j).getPourcentage());*/
+		for(int j = 0; j < list1.size(); j++){
+			System.out.println(list1.get(j));
 		}
 		
 		/*
