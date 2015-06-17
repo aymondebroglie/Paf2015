@@ -5,7 +5,7 @@ public class CalculOccurenceVille {
 			
 	
 	
-	public static ArrayList<SebVille> calculOccurenceVille(ArrayList<String> listVille, int pourcentage){
+	public static ArrayList<SebVille> calculOccurenceVille(ArrayList<String> listVille, double pourcentage){
 		
 		ArrayList<SebVille> resultat = new ArrayList<SebVille>();
 		ArrayList<SebVille> resultat2 = new ArrayList<SebVille>();
