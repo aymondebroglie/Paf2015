@@ -13,7 +13,34 @@ import java.util.Collections;
 
 
 
-public class IDTF {
+public class IDTF   {
+	
+
+	
+	
+	private double idtf;
+	private String mot;
+	
+	public IDTF(String mot, double idtf)
+	{
+		this.mot=mot;
+		this.idtf=idtf;
+		
+	}
+	
+	public void setIdtf(double idtf){
+		this.idtf=idtf;
+		
+	}
+	
+	public double getIdtf(){
+		return idtf;
+	}
+	
+	public String getMot() {
+		return mot;
+	}
+	
 	
 	  public static double tfCalculator(ArrayList<String> totalterms, String termToCheck) {
 	        double count = 0;  //to count the overall occurrence of the term termToCheck
@@ -115,24 +142,26 @@ public class IDTF {
             e.printStackTrace();
         }
 		
-		//idfCalculator(, )
 		String c=tout.get(0);
 		tout.removeAll(Collections.singleton(c));
-		//while(tout.remove(c));
+		ArrayList<IDTF> repFre= new ArrayList<IDTF>();
+		int p=0;
+        for (String s : tout) 
+        {
+    		double idfCalculator = idfCalculator(listTitre, s);
+    		double tfCalculator= tfCalculator(tout, s);
+    		double f= idfCalculator*tfCalculator;
+    		IDTF idtf= new IDTF(s, f);
+    		repFre.add(idtf);
+    		System.out.println(repFre.get(p).getMot() +"  "+ repFre.get(p).getIdtf());
+    		p++;
+
+        }
+
+       
+        
+        
 		
-		
-		/*for(int l=0; l<tout.size(); l++)
-		{
-			//if (tout.get(l)!=c)
-			System.out.println(tout.get(l));
-			
-			
-		}
-		*/
-		
-		
-		double tfCalculator = idfCalculator(listTitre, "DISPOSITIF");
-		System.out.println(tfCalculator);
 		
       }
 	
@@ -143,3 +172,4 @@ public class IDTF {
 
 
 }
+
