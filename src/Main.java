@@ -8,14 +8,26 @@ import java.io.*;
 public class Main {
 
 	public static void main(String[] args) {
-		ArrayList<String> list1 = new ArrayList<String>();
+		
+		
+		TabledeHachage ListeRegion = new TabledeHachage();
+		ListeRegion.init();
+		
+		System.out.println(ListeRegion.getRegion("(75)"));
+		System.out.println(ListeRegion.getRegion("(69)"));
+		System.out.println(ListeRegion.getRegion("(13)"));
+		System.out.println(ListeRegion.getRegion("(31)"));
+		System.out.println(ListeRegion.getRegion("(35)"));
+		
+		
+		//ArrayList<String> list1 = new ArrayList<String>();
 		/*Recherche rech = new Recherche("fr-patent-document","city");
 		list1 = rech.recherche();
 		/*String c = list1.get(10);
 		list1.removeAll(Collections.singleton(c));*/
 		/*System.out.println(list1.size());*/
 		
-		list1.add("Lyon");
+		/*list1.add("Lyon");
 		list1.add("Lyon");
 		list1.add("Paris");
 		list1.add("Paris");
@@ -34,7 +46,7 @@ public class Main {
 		for (int j=0; j<occurence.size(); j++){
         	System.out.println(occurence.get(j).getNomVille());
 		System.out.println(occurence.get(j).getPourcentage());
-		}
+		}*/
 		/*for(int j = 0; j < list1.size(); j++){
 			System.out.println(list1.get(j));
 		}*/
