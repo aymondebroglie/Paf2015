@@ -8,48 +8,23 @@ import java.io.*;
 public class Main {
 
 	public static void main(String[] args) {
-		
-		
-		TabledeHachage ListeRegion = new TabledeHachage();
-		ListeRegion.init();
-		
-		System.out.println(ListeRegion.getRegion("(75)"));
-		System.out.println(ListeRegion.getRegion("(69)"));
-		System.out.println(ListeRegion.getRegion("(13)"));
-		System.out.println(ListeRegion.getRegion("(31)"));
-		System.out.println(ListeRegion.getRegion("(35)"));
-		
-		
-		//ArrayList<String> list1 = new ArrayList<String>();
-		/*Recherche rech = new Recherche("fr-patent-document","city");
+		ArrayList<String> list1; 
+		Recherche rech = new Recherche("fr-patent-document","postcode");
 		list1 = rech.recherche();
-		/*String c = list1.get(10);
-		list1.removeAll(Collections.singleton(c));*/
-		/*System.out.println(list1.size());*/
 		
-		/*list1.add("Lyon");
-		list1.add("Lyon");
-		list1.add("Paris");
-		list1.add("Paris");
-		list1.add("Lyon");
-		list1.add("Avignon");
-		list1.add("Dardilly");
-		list1.add("Lyon");
-		list1.add("Versaille");
-		list1.add("Versaille");
-		list1.add("Lyon");
-		list1.add("Avignon");
-		list1.add("Lyon");
-		list1.add("Avignon");
-		
-		ArrayList<SebVille> occurence = CalculOccurenceVille.calculOccurenceVille(list1, 20);
+		/*Code pour les codes postaux */
+		String c = list1.get(10);
+		list1.removeAll(Collections.singleton(c));
+		System.out.println(list1.size());
+		CodePostaux.classerCode(list1);
+		/* Code pour les villes*/
+		/*System.out.println(list1.size());
+		ArrayList<SebVille> occurence = CalculOccurenceVille.calculOccurenceVille(list1, 0);
 		for (int j=0; j<occurence.size(); j++){
         	System.out.println(occurence.get(j).getNomVille());
 		System.out.println(occurence.get(j).getPourcentage());
 		}*/
-		/*for(int j = 0; j < list1.size(); j++){
-			System.out.println(list1.get(j));
-		}*/
+		
 		
 		/*
 		//code pour la base de donnée
