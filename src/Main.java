@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.io.*;
 
 
@@ -6,28 +8,20 @@ import java.io.*;
 public class Main {
 
 	public static void main(String[] args) {
-		ArrayList<String> list1 = new ArrayList<String>(); 
-		/*Recherche rech = new Recherche("fr-patent-document","city");
-		list1 = rech.recherche();*/
-		
-		list1.add("Lyon");
-		list1.add("Lyon");
-		list1.add("Paris");
-		list1.add("Paris");
-		list1.add("Paris");
-		list1.add("Dardilly");
-		list1.add("Dardilly");
-		list1.add("Lyon");
-		list1.add("Versaille");
-		list1.add("Paris");
-		list1.add("Lyon");
-		
-		
+		ArrayList<String> list1; 
+		Recherche rech = new Recherche("fr-patent-document","city");
+		list1 = rech.recherche();
+		/*String c = list1.get(10);
+		list1.removeAll(Collections.singleton(c));*/
+		System.out.println(list1.size());
 		ArrayList<SebVille> occurence = CalculOccurenceVille.calculOccurenceVille(list1, 0);
 		for (int j=0; j<occurence.size(); j++){
         	System.out.println(occurence.get(j).getNomVille());
 		System.out.println(occurence.get(j).getPourcentage());
 		}
+		/*for(int j = 0; j < list1.size(); j++){
+			System.out.println(list1.get(j));
+		}*/
 		
 		/*
 		//code pour la base de donnée
@@ -50,4 +44,4 @@ public class Main {
 		System.out.println("m = "+resultat.getPourcentageHomme()+", f = "+resultat.getPourcentageFemme()+" u1 = " + resultat.getPourcentageMixte() +", u2 = "+resultat.getPourcentageIndetermine()+"");
 	*/}
 
-}
+	}
