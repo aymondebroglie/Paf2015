@@ -16,12 +16,15 @@ public class CalculOccurenceVille {
 		int s2 = 0;
 		int j = 0;
 		int find = 0;
-		int u = 0;
+		double comparer = 0;
 		
 		
 		for( int i = 0; i < s1; i++){
 			
+		
 			while (find == 0 && j < s2){
+				
+				
 				
 				if(listVille.get(i).compareTo(resultat.get(j).getNomVille()) == 0){
 					
@@ -31,8 +34,10 @@ public class CalculOccurenceVille {
 				}
 				j = j + 1;
 			}
-			
-			if( j == s2){
+			System.out.println("s2 = "+s2+", j = "+j+"");
+			if( find == 0){
+				
+				
 				SebVille newVille = new SebVille(listVille.get(i), 1);
 				//newVille.setPourcentage(1/(s1));
 				resultat.add(newVille);
@@ -44,9 +49,12 @@ public class CalculOccurenceVille {
 			 
 			
 		}
+		System.out.println(s1);
 		
 		for(int g = 0; g < s2; g ++){
-			resultat.get(g).setPourcentage(resultat.get(g).getOccurence()/(s2));
+
+
+			resultat.get(g).setPourcentage((resultat.get(g).getOccurence()*100)/(s1));
 		}
 		
 		
@@ -67,12 +75,21 @@ public class CalculOccurenceVille {
 			resultat.set(indicepetit, transfertVille);
 		}
 		
-		u = s2 - 1;
 		
-		while(resultat.get(u).getPourcentage() > pourcentage && u >= s2){
-			resultat2.add(resultat.get(u));
-			u = u - 1;
+		int l = s2 - 1;
+		
+
+		while( l >= 0){
+			
+			comparer = resultat.get(l).getPourcentage();
+			
+			while((comparer) > pourcentage && l >=0 ){
+				SebVille transfert = resultat.get(l);
+				resultat2.add(transfert);
+				l = l - 1;
+			}
 		}
+		
 		
 		
 		return resultat2;
