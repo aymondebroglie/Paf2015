@@ -8,13 +8,29 @@ import java.io.*;
 public class Main {
 
 	public static void main(String[] args) {
-		ArrayList<String> list1; 
-		Recherche rech = new Recherche("fr-patent-document","city");
+		ArrayList<String> list1 = new ArrayList<String>();
+		/*Recherche rech = new Recherche("fr-patent-document","city");
 		list1 = rech.recherche();
 		/*String c = list1.get(10);
 		list1.removeAll(Collections.singleton(c));*/
-		System.out.println(list1.size());
-		ArrayList<SebVille> occurence = CalculOccurenceVille.calculOccurenceVille(list1, 0);
+		/*System.out.println(list1.size());*/
+		
+		list1.add("Lyon");
+		list1.add("Lyon");
+		list1.add("Paris");
+		list1.add("Paris");
+		list1.add("Lyon");
+		list1.add("Avignon");
+		list1.add("Dardilly");
+		list1.add("Lyon");
+		list1.add("Versaille");
+		list1.add("Versaille");
+		list1.add("Lyon");
+		list1.add("Avignon");
+		list1.add("Lyon");
+		list1.add("Avignon");
+		
+		ArrayList<SebVille> occurence = CalculOccurenceVille.calculOccurenceVille(list1, 20);
 		for (int j=0; j<occurence.size(); j++){
         	System.out.println(occurence.get(j).getNomVille());
 		System.out.println(occurence.get(j).getPourcentage());

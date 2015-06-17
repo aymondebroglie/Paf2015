@@ -34,7 +34,7 @@ public class CalculOccurenceVille {
 				}
 				j = j + 1;
 			}
-			System.out.println("s2 = "+s2+", j = "+j+"");
+			//System.out.println("s2 = "+s2+", j = "+j+"");
 			if( find == 0){
 				
 				
@@ -49,7 +49,7 @@ public class CalculOccurenceVille {
 			 
 			
 		}
-		System.out.println(s1);
+		//System.out.println(s1);
 		
 		for(int g = 0; g < s2; g ++){
 
@@ -79,16 +79,26 @@ public class CalculOccurenceVille {
 		int l = s2 - 1;
 		
 
-		while( l >= 0){
+		
 			
+		comparer = resultat.get(l).getPourcentage();
+		//System.out.println(resultat.get(l).getPourcentage());
+			
+		while((comparer > pourcentage) && l >=1 ){
+				
+			//System.out.println("je suis dans le while");
+			
+			SebVille transfert = resultat.get(l);
+			resultat2.add(transfert);
+			l = l - 1;
 			comparer = resultat.get(l).getPourcentage();
 			
-			while((comparer) > pourcentage && l >=0 ){
-				SebVille transfert = resultat.get(l);
-				resultat2.add(transfert);
-				l = l - 1;
-			}
 		}
+		
+		if(resultat.get(0).getPourcentage() > pourcentage){
+			resultat2.add(resultat.get(0));
+		}
+		
 		
 		
 		
