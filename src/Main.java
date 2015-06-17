@@ -6,9 +6,23 @@ import java.io.*;
 public class Main {
 
 	public static void main(String[] args) {
-		ArrayList<String> list1; 
-		Recherche rech = new Recherche("fr-patent-document","city");
-		list1 = rech.recherche();
+		ArrayList<String> list1 = new ArrayList<String>(); 
+		/*Recherche rech = new Recherche("fr-patent-document","city");
+		list1 = rech.recherche();*/
+		
+		list1.add("Lyon");
+		list1.add("Lyon");
+		list1.add("Paris");
+		list1.add("Paris");
+		list1.add("Paris");
+		list1.add("Dardilly");
+		list1.add("Dardilly");
+		list1.add("Lyon");
+		list1.add("Versaille");
+		list1.add("Paris");
+		list1.add("Lyon");
+		
+		
 		ArrayList<SebVille> occurence = CalculOccurenceVille.calculOccurenceVille(list1, 0);
 		for (int j=0; j<occurence.size(); j++){
         	System.out.println(occurence.get(j).getNomVille());
