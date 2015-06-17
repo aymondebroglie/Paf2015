@@ -5,14 +5,18 @@ public class CalculOccurenceVille {
 			
 	
 	
-	public static ArrayList<SebVille> calculOccurenceVille(ArrayList<String> listVille){
+	public static ArrayList<SebVille> calculOccurenceVille(ArrayList<String> listVille, int pourcentage){
 		
 		ArrayList<SebVille> resultat = new ArrayList<SebVille>();
+		ArrayList<SebVille> resultat2 = new ArrayList<SebVille>();
+		
+		
 		
 		int s1 = listVille.size();
 		int s2 = 0;
 		int j = 0;
 		int find = 0;
+		int u = 0;
 		
 		
 		for( int i = 0; i < s1; i++){
@@ -41,9 +45,32 @@ public class CalculOccurenceVille {
 			
 		}
 		
+		int s=resultat.size();
+		
+		for (int k=0; k<s; k++){
+			int indicepetit=k;
+			SebVille min=resultat.get(k);
+			
+			for(int h=k; h<s; h++){
+				if(resultat.get(h).getPourcentage() < min.getPourcentage()){
+					min=resultat.get(h);
+					indicepetit=h;
+				}
+			
+			}
+			//swap(k,indicepetit);
+			SebVille transfertVille = resultat.get(k);
+			resultat.set(k, resultat.get(indicepetit));
+			resultat.set(indicepetit, transfertVille);
+		}
 		
 		
+		while(resultat.get(u).getPourcentage() > pourcentage && u < s2){
+			resultat2.add(resultat.get(u));
+			u = u + 1;
+		}
 		
-		return resultat;
+		
+		return resultat2;
 	}
 }
