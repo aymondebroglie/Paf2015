@@ -9,12 +9,13 @@ import org.w3c.dom.Element;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 
 
 
 public class IDTF {
 	
-	  public double tfCalculator(ArrayList<String> totalterms, String termToCheck) {
+	  public static double tfCalculator(ArrayList<String> totalterms, String termToCheck) {
 	        double count = 0;  //to count the overall occurrence of the term termToCheck
 	        for (String s : totalterms) {
 	            if (s.equalsIgnoreCase(termToCheck)) {
@@ -31,21 +32,20 @@ public class IDTF {
 	     * @param termToCheck
 	     * @return idf(inverse document frequency) score
 	     */
-	    public double idfCalculator(ArrayList<String> allTerms, String termToCheck) {
+	    public static double idfCalculator(ArrayList<String[]> allTerms, String termToCheck) {
 	        double count = 0;
-	        for (String ss : allTerms) {
-	           // for (String s : ss) {
-	                if (ss.equalsIgnoreCase(termToCheck)) {
+	        for (String[] ss : allTerms) {
+	            for (String s : ss) {
+	                if (s.equalsIgnoreCase(termToCheck)) {
 	                    count++;
 	                    break;
 	                }
 	            }
-	      //  }
-	        return 1 + Math.log(allTerms.size() / count);
+	        }
+	        return Math.log(allTerms.size() / count);
 	    }
-	
-
-	
+	    
+	    
 	
 	  
 
@@ -55,10 +55,10 @@ public class IDTF {
 		
 		
 		
+
 		
-		
-		
-		ArrayList<String> listTitre = new ArrayList<String>();
+		ArrayList<String[]> listTitre = new ArrayList<String[]>();
+		ArrayList<String> tout= new ArrayList<String>();
 		
 		try {
             
@@ -69,7 +69,7 @@ public class IDTF {
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             
-            for (int k=0; k<listefichiers.length;k++)
+            for (int k=0; k<listefichiers.length/100;k++)
             {
             	 if(listefichiers[k].endsWith(".xml")==true)
             	 {             
@@ -91,8 +91,13 @@ public class IDTF {
                            
                                     
                             
-                           // System.out.println("Titre : " + eElement.getElementsByTagName("invention-title").item(0).getTextContent());
-                            listTitre.add(eElement.getElementsByTagName("invention-title").item(0).getTextContent().toLowerCase());
+                           String s= eElement.getElementsByTagName("invention-title").item(0).getTextContent();
+                           String[] parts= s.split(" ");
+                           listTitre.add(parts);
+                           for (int k1=0; k1<parts.length; k1++) {
+                        	   tout.add(parts[k1]);
+                           }
+                           
                         
                             
                     }
@@ -102,10 +107,36 @@ public class IDTF {
             }
             }
             	 }
+            
+           
+            
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
+		
+		//idfCalculator(, )
+		String c=tout.get(0);
+		tout.removeAll(Collections.singleton(c));
+		//while(tout.remove(c));
+		
+		
+		/*for(int l=0; l<tout.size(); l++)
+		{
+			//if (tout.get(l)!=c)
+			System.out.println(tout.get(l));
+			
+			
+		}
+		*/
+		
+		
+		double tfCalculator = idfCalculator(listTitre, "DISPOSITIF");
+		System.out.println(tfCalculator);
+		
       }
+	
+	
      
     
     
