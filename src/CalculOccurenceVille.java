@@ -5,7 +5,7 @@ public class CalculOccurenceVille {
 			
 	
 	
-	public static ArrayList<SebVille> calculOccurenceVille(ArrayList<String> listVille, int pourcentage){
+	public static ArrayList<SebVille> calculOccurenceVille(ArrayList<String> listVille, double pourcentage){
 		
 		ArrayList<SebVille> resultat = new ArrayList<SebVille>();
 		ArrayList<SebVille> resultat2 = new ArrayList<SebVille>();
@@ -64,10 +64,11 @@ public class CalculOccurenceVille {
 			resultat.set(indicepetit, transfertVille);
 		}
 		
-		
-		while(resultat.get(u).getPourcentage() > pourcentage && u < s2){
+		u = s2-1;
+		while(resultat.get(u).getPourcentage() > pourcentage && u >=0){
+			System.out.println("Rentrée while");
 			resultat2.add(resultat.get(u));
-			u = u + 1;
+			u = u - 1;
 		}
 		
 		

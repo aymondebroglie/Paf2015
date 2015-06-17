@@ -9,7 +9,7 @@ public class Main {
 		ArrayList<String> list1; 
 		Recherche rech = new Recherche("fr-patent-document","city");
 		list1 = rech.recherche();
-		ArrayList<SebVille> occurence = CalculOccurenceVille.calculOccurenceVille(list1);
+		ArrayList<SebVille> occurence = CalculOccurenceVille.calculOccurenceVille(list1, 0);
 		for (int j=0; j<occurence.size(); j++){
         	System.out.println(occurence.get(j).getNomVille());
 		System.out.println(occurence.get(j).getPourcentage());
