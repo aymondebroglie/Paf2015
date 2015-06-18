@@ -96,11 +96,11 @@ public  class IDTF  implements Comparable<IDTF>  {
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             
-            for (int k=0; k<listefichiers.length/100;k++)
+            for (int k=0; k<listefichiers.length;k++)
             {
             	 if(listefichiers[k].endsWith(".xml")==true)
             	 {             
-            File fXmlFile = new File("C:/Users/oussama/Desktop/INPI/2014/FR_FRNEWST36_2014_48/doc/2992519_1"+listefichiers[k]);
+            File fXmlFile = new File("C:/Users/oussama/Desktop/INPI/2014/FR_FRNEWST36_2014_48/doc/2992519_1/"+"2992519.xml");
             Document doc = dBuilder.parse(fXmlFile);
             
             doc.getDocumentElement().normalize();
