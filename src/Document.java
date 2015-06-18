@@ -6,6 +6,7 @@ public class Document {
 	private String path;
 	private ListeIDTF listIDTF;
 	private ArrayList<Document> autresDocuments; //la liste des autres documents pour pouvoir calculer la tf-idf
+	private ArrayList<String> listMots;
 	
 	public String getPath() {
 		return path;
@@ -28,9 +29,14 @@ public class Document {
 	//une methode qui calcule les tf-idf de tous les termes du document
 	public void calculerIDTF() {
 		int nbMots=listIDTF.getListe().size();
+		ArrayList<String[]> tousDocuments = new ArrayList<String[]>();
+		for (int i=0; i<autresDocuments.size(); i++) {
+			tousDocuments.add((String[]) autresDocuments.get(i).listMots.toArray());
+		}
 		for (int i=0; i<nbMots; i++) {
-			double tfidf=listIDTF.getListe().get(i).getIdtf();
-			listIDTF.getListe().get(i).setIdtf(tfidf);
+			double tf=IDTF.tfCalculator(listMots, listMots.get(i));
+			double idf=IDTF.idfCalculator(tousDocuments, listMots.get(i));
+			listIDTF.getListe().get(i).setIdtf(tf*idf);
 		}
 	}
 	
