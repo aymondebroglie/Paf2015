@@ -13,10 +13,11 @@ public static ArrayList<Integer> classerCode (ArrayList<String> liste){
 		 liste.set(i, liste.get(i).substring(0,2));
 		try{resultat.add(i,Integer.parseInt(liste.get(i)));}
 		catch(Exception e){}
-		 System.out.println(resultat.get(i));
+		
 	 }
-		 
+	
 	 }
+	 
 	 
 	 
 	 return resultat;
