@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 //une classe qui represente un document
 public class Document {
@@ -40,6 +41,15 @@ public class Document {
 		}
 	}
 	
-	
+	public Document(ArrayList<String[]> listeTitre, int indice) {
+		listMots=new ArrayList<String>(Arrays.asList(listeTitre.get(indice)));
+		autresDocuments= new ArrayList<Document>();
+		for (int i=0; i<listeTitre.size(); i++) {
+			autresDocuments.add(new Document(listeTitre,i));
+		}
+		for(int i=0;i<listMots.size();i++) {
+			listIDTF.getListe().get(i).setMot(listeTitre.get(indice)[i]);
+		}
+	}
 	
 }

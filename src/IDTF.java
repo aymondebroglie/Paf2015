@@ -37,6 +37,10 @@ public  class IDTF  implements Comparable<IDTF>  {
 		return idtf;
 	}
 	
+	public void setMot(String mot) {
+		this.mot=mot;
+	}
+	
 	public String getMot() {
 		return mot;
 	}
