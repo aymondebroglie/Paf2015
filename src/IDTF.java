@@ -17,10 +17,7 @@ import org.w3c.dom.Element;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
+
 
 
 
@@ -169,7 +166,6 @@ public class IDTF    {
 	
 		ArrayList<String[]> listTitre = new ArrayList<String[]>();   // liste qui contient la description de chaque brevet: 1 élement = 1 brevet
 		ArrayList<String> tout= new ArrayList<String>();             // liste qui contient tous les mots de chaque brevet
-		int tab[] = null;
 		
 		
 		
@@ -226,7 +222,6 @@ public class IDTF    {
             
            
             
-            
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -267,20 +262,30 @@ public class IDTF    {
         	
         }
         
+        for(int p=0; p<repFreq.size(); p++)                                     //repFreq contient dorenavant les valeurs correctes des IDTF
+        {
+        	IDTF idtf= new IDTF(repFreq.get(p).getMot(), repFreq.get(p).getIdtf()*repFre.get(p).getIdtf());
+        	repFreq.set(p,idtf );                                                                
+        	//System.out.println(repFreq.get(p).getMot()+"       "+repFreq.get(p).getIdtf() );
+        	
+        }
         
-       
-        /*
-        Set<String> set = new HashSet<String>() ;
-        set.addAll(tout) ;
-        ArrayList<String> repFre1 = new ArrayList<String>(set) ;
+        
+        
+        
+    
+        
+        
+        ArrayList<IDTF> repFreq1= new ArrayList<IDTF>();
+        repFreq1= tri_fusion(repFreq);
+        
 
-        */
+        for(int p=0; p<repFreq.size(); p++)
+        {
+        	System.out.println(repFreq1.get(p).getMot()+"       "+repFreq1.get(p).getIdtf() );
+        	
+        }
         
-        
-        
-    //   repFreq= tri_fusion(repFre);
-        
-
 
 		
         
@@ -291,19 +296,15 @@ public class IDTF    {
         
         
         
-        for(int u=0;u<repFre.size();u++){
+      /*  for( u=0;u<repFre.size();u++){
         	System.out.println(repFre.get(u).getIdtf()+ "    "+ repFre.get(u).getMot());
         	System.out.println(repFreq.get(u).getIdtf()+ "    "+ repFreq.get(u).getMot());
 
-
         }
         
-        
-        for (int y=0; y<repFreq.size(); y++){
-         	System.out.println(repFreq.get(y).getIdtf()+ "    "+ repFreq.get(y).getMot());
-        	
-        }
-        
+     
+*/   
+    
 		
       }
 
