@@ -10,11 +10,10 @@ import org.w3c.dom.Element;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 
 
 
-public class IDTF    {
+public  class IDTF  implements Comparable<IDTF>  {
 	
 
 	
@@ -90,7 +89,7 @@ public class IDTF    {
 		
 		try {
             
-			File repertoire= new File("C:/Users/Mehdi/Desktop/Bb");
+			File repertoire= new File("C:/Users/oussama/Desktop/INPI/2014/FR_FRNEWST36_2014_48/doc/2992519_1");
 			 String[] listefichiers = repertoire.list();
             
             
@@ -101,7 +100,7 @@ public class IDTF    {
             {
             	 if(listefichiers[k].endsWith(".xml")==true)
             	 {             
-            File fXmlFile = new File("C:/Users/Mehdi/Desktop/Bb/"+listefichiers[k]);
+            File fXmlFile = new File("C:/Users/oussama/Desktop/INPI/2014/FR_FRNEWST36_2014_48/doc/2992519_1"+listefichiers[k]);
             Document doc = dBuilder.parse(fXmlFile);
             
             doc.getDocumentElement().normalize();
@@ -143,10 +142,10 @@ public class IDTF    {
             e.printStackTrace();
         }
 		
-		String c=tout.get(0);
-		tout.removeAll(Collections.singleton(c));
+		//String c=tout.get(0);
+		tout.removeAll(Collections.singleton(""));
 		
-		ArrayList<IDTF> repFre= new ArrayList<IDTF>();
+		ListeIDTF repFre= new ListeIDTF();
 		int p=0;
         for (String s : tout) 
         {
@@ -154,17 +153,28 @@ public class IDTF    {
     		double tfCalculator= tfCalculator(tout, s);
     		double f= idfCalculator*tfCalculator;
     		IDTF idtf= new IDTF(s, f);
-    		repFre.add(idtf);
-    		System.out.println(repFre.get(p).getMot() +"  "+ repFre.get(p).getIdtf());
+    		repFre.addIDTF(idtf);
     		p++;
 
         }
-       
+        
+        repFre.trier();
+       for (int i=0;i<repFre.getListe().size();i++) {
+    	   System.out.println(repFre.getListe().get(i).getMot() +"  "+ repFre.getListe().get(i).getIdtf());
+       }
         
         
 		
 		
       }
+
+	 public int compareTo(IDTF idtf) {
+		// TODO Auto-generated method stub
+		if (this.idtf>idtf.getIdtf()) return 1;
+		else if (this.idtf<idtf.getIdtf()) return -1;
+		else return 0;
+	}
+
 
 
      
