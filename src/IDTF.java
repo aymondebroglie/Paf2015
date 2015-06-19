@@ -46,7 +46,35 @@ public class IDTF {
 	
 
 	
-	
+	    public ArrayList<String> dictionnaire(ArrayList<String> base){
+	    	
+	    	ArrayList<String> dico = new ArrayList<String>();
+	    	int s1 = base.size();
+	    	int s2 = 0;
+	    	int j = 0;
+	    	int find = 0;
+	    	
+	    	for(int i = 0; i < s1; i++){
+	    		if(base.get(i).compareTo("fin") != 0){
+	    			while(find == 0 && j < s2){
+	    				if(base.get(i).compareTo(dico.get(j)) == 0){
+	    					find = 1;
+	    				}
+	    				j = j +1;
+	    			}
+	    			
+	    			if (find == 0){
+	    				dico.add(base.get(i));
+	    			}
+	    			find = 0;
+	    			j = 0;
+	    		}
+	    	}
+	    	
+	    	return dico;
+	    }
+	    
+	    
 	  
 
 
