@@ -16,6 +16,27 @@ import java.util.Collections;
 public  class IDTF  implements Comparable<IDTF>  {
 	
 
+	public ArrayList<double[]> getVecteurs (ArrayList<IDTF> docs) {
+		ArrayList<double[]> res=new ArrayList<double[]>();
+		int j=0;
+		int p=0;
+		for (int i=0; i<docs.size(); i++) {
+			j=j+1;
+			String mot=docs.get(i).getMot();
+			if(mot.equals("fin")) {
+				if (j>0) {
+					double vecteur[]=new double[j-1];
+					for(int k=0; k<j; k++) {
+						vecteur[k]=docs.get(p+k).getIdtf();
+					}
+					res.add(vecteur);
+					p=p+j;
+					j=0;
+				}
+			}
+		}
+		return res;
+	}
 	
 	
 	private double idtf;
