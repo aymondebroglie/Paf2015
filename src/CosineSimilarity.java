@@ -4,7 +4,8 @@ public class CosineSimilarity {
 	
 	// methode qui à partir de 2 vecteurs calcul le cosine similarity
 	
-	public static double cosineSimilarity(double[] vectorA, double[] vectorB) {
+	public static double cosineSimilarity(double[] vectorA, double[] vectorB) 
+	{
 	    double dotProduct = 0.0;
 	    double normA = 0.0;
 	    double normB = 0.0;

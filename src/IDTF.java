@@ -25,6 +25,30 @@ import java.util.ArrayList;
 public class IDTF    {
 	
 
+	public  static ArrayList<double[]> getVecteurs (ArrayList<IDTF> docs) {
+		ArrayList<double[]> res=new ArrayList<double[]>();
+		int j=0;
+		int p=0;
+		for (int i=0; i<docs.size(); i++) {
+			j=j+1;
+			String mot=docs.get(i).getMot();
+			if(mot.equals("fin")) {
+				if (j>0) {
+					double vecteur[]=new double[j-1];
+					for(int k=0; k<j; k++) {
+						vecteur[k]=docs.get(p+k).getIdtf();
+					}
+					res.add(vecteur);
+					p=p+j;
+					j=0;
+				}
+			}
+		}
+		return res;
+	}
+	
+	
+	
 	
 	private double idf;
 	private double tf;
@@ -194,7 +218,6 @@ public class IDTF    {
                      
                     Node nNode = nList.item(temp);
      
-                 //   System.out.println("\nCurrent Element :" + nNode.getNodeName());
      
                     if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                             
@@ -214,12 +237,12 @@ public class IDTF    {
                            {
                         	   if(k1<parts.length)
                         		   tout.add(parts[k1]);
-                        	   else 
-                        		   tout.add("fin");
+                        
                         	   
                            }
                            if (eElement.getElementsByTagName("p").item(j)==null)
                            {
+                        	   tout.add("fin");
                                    i=-1;
                            }
                            }
@@ -243,8 +266,8 @@ public class IDTF    {
 		
 		//String c=tout.get(0);
 		//tout.removeAll(Collections.singleton(c));
-		ArrayList<IDTF> repFre= new ArrayList<IDTF>();
-		ArrayList<IDTF> repFreq= new ArrayList<IDTF>();
+		ArrayList<IDTF> repFre= new ArrayList<IDTF>();        //contient les idf
+		ArrayList<IDTF> repFreq= new ArrayList<IDTF>();       // contient les tf
 	//	int p=0;
         for (String s : tout) 
         {
@@ -279,28 +302,29 @@ public class IDTF    {
         
         for(int p=0; p<repFreq.size(); p++)                                     //repFreq contient dorenavant les valeurs correctes des IDTF
         {
-        	if (repFreq.get(p).getMot().compareTo("fin")!=0)
-        	{
+        	//if (repFreq.get(p).getMot().compareTo("fin")!=0)
+        	//{
 	        	IDTF idtf= new IDTF(repFreq.get(p).getMot(), repFreq.get(p).getIdtf()*repFre.get(p).getIdtf());
 	        	repFreq.set(p,idtf );                                                                
 	        	//System.out.println(repFreq.get(p).getMot()+"       "+repFreq.get(p).getIdtf() );
-        	}
+        	//}
         }
-        
+       
+       
         
         
         
     
         
         
-      //  ArrayList<IDTF> repFreq1= new ArrayList<IDTF>();
-       // repFreq1= tri_fusion(repFreq);
+      //    ArrayList<double[]> repFreq1= new ArrayList<double[]>();
+      //  repFreq1= getVecteurs(repFreq);
         
 
         for(int p=0; p<repFreq.size(); p++)
         {
-        	System.out.println(repFreq.get(p).getMot()+"       "+repFreq.get(p).getIdtf() );
-        	
+        	//System.out.println((repFre).get(p).getMot()+"       "+(repFre).get(p).getIdtf() );
+        	System.out.println((repFreq).get(p).getMot()+"       "+(repFreq).get(p).getIdtf() );
         }
         
 
