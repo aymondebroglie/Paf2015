@@ -163,7 +163,7 @@ public class IDTF    {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-	
+		 
 		ArrayList<String[]> listTitre = new ArrayList<String[]>();   // liste qui contient la description de chaque brevet: 1 élement = 1 brevet
 		ArrayList<String> tout= new ArrayList<String>();             // liste qui contient tous les mots de chaque brevet
 		
@@ -171,8 +171,9 @@ public class IDTF    {
 		
 		
 		try {
-            
-			File repertoire= new File("C:/Users/Mehdi/Desktop/Bb");
+			 int i=1;
+	         int j=0;
+			File repertoire= new File("C:/Users/Mehdi/Desktop/B");
 			 String[] listefichiers = repertoire.list();
             
             
@@ -183,7 +184,7 @@ public class IDTF    {
             {
             	 if(listefichiers[k].endsWith(".xml")==true)
             	 {             
-            File fXmlFile = new File("C:/Users/Mehdi/Desktop/Bb/"+listefichiers[k]);
+            File fXmlFile = new File("C:/Users/Mehdi/Desktop/B/"+listefichiers[k]);
             Document doc = dBuilder.parse(fXmlFile);
             
             doc.getDocumentElement().normalize();
@@ -200,15 +201,29 @@ public class IDTF    {
                             Element eElement = (Element) nNode;
                            
                                     
-                            
-                           String s= eElement.getElementsByTagName("p").item(0).getTextContent().toLowerCase();
+                            if (eElement.getElementsByTagName("p").item(0)!=null){
+                                i=1;
+                        }
+                        while (i>0){ 
+                           String s= eElement.getElementsByTagName("p").item(j).getTextContent().toLowerCase();
+                           j++;
                            String[] parts= s.split(" ");
                            listTitre.add(parts);
-                           for (int k1=0; k1<parts.length; k1++) 
+                           ;
+                           for (int k1=0; k1<parts.length+1; k1++) 
                            {
-                        	   tout.add(parts[k1]);
+                        	   if(k1<parts.length)
+                        		   tout.add(parts[k1]);
+                        	   else 
+                        		   tout.add("fin");
                         	   
                            }
+                           if (eElement.getElementsByTagName("p").item(j)==null)
+                           {
+                                   i=-1;
+                           }
+                           }
+                        listTitre.add("fin".split(" "));
                            
                         
                             
@@ -264,10 +279,12 @@ public class IDTF    {
         
         for(int p=0; p<repFreq.size(); p++)                                     //repFreq contient dorenavant les valeurs correctes des IDTF
         {
-        	IDTF idtf= new IDTF(repFreq.get(p).getMot(), repFreq.get(p).getIdtf()*repFre.get(p).getIdtf());
-        	repFreq.set(p,idtf );                                                                
-        	//System.out.println(repFreq.get(p).getMot()+"       "+repFreq.get(p).getIdtf() );
-        	
+        	if (repFreq.get(p).getMot().compareTo("fin")!=0)
+        	{
+	        	IDTF idtf= new IDTF(repFreq.get(p).getMot(), repFreq.get(p).getIdtf()*repFre.get(p).getIdtf());
+	        	repFreq.set(p,idtf );                                                                
+	        	//System.out.println(repFreq.get(p).getMot()+"       "+repFreq.get(p).getIdtf() );
+        	}
         }
         
         
@@ -276,13 +293,13 @@ public class IDTF    {
     
         
         
-        ArrayList<IDTF> repFreq1= new ArrayList<IDTF>();
-        repFreq1= tri_fusion(repFreq);
+      //  ArrayList<IDTF> repFreq1= new ArrayList<IDTF>();
+       // repFreq1= tri_fusion(repFreq);
         
 
         for(int p=0; p<repFreq.size(); p++)
         {
-        	System.out.println(repFreq1.get(p).getMot()+"       "+repFreq1.get(p).getIdtf() );
+        	System.out.println(repFreq.get(p).getMot()+"       "+repFreq.get(p).getIdtf() );
         	
         }
         
