@@ -451,26 +451,22 @@ public class IDTF    {
   	
   */
  
-     	//System.out.println(nombreDoc(aI));
 
-
- /*	 for (int u=0; u<dico.size();u++)
-         {
-         	//System.out.println(table.getIndice(table.getMot(u))+"  "+table.getMot(u));
-   		 	System.out.println(u+"   " +dico.get(u));
-         }
-	*/	
+    	
+    	
+    	
+    	
+    // Voici un exemple de comment on calcule la CosineSimilarity entre 2 vecteurs (pour les courageux qui auront lu jusqu'au bout^^)	
     
-    double[] ligne= new double[dico.size()];
-    ligne=getLigne(mat, 1);
-    
-	 for (int u=0; u<dico.size();u++){
+    double[] ligne0= new double[dico.size()];
+    double[] ligne1= new double[dico.size()];
+    ligne1=getLigne(mat, 1);
+    ligne0=getLigne(mat, 0);
 
-	System.out.println( ligne[u]);
-
-	 }
-
+    double val=0;
+    val=CosineSimilarity.cosineSimilarity(ligne0, ligne1);
    
+    System.out.println(val);
 }
 
     
