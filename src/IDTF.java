@@ -144,6 +144,24 @@ public class IDTF    {
     }
 	    
 	    
+	    
+	    public static double[] getLigne(double[][] mat, int l){
+	    	
+	    	
+	    	int n=0;
+	    	if (mat.length!=0)
+	    		n=mat[0].length;
+	    	double[] ligne= new double[n];
+	    	for (int j=0; j<n;j++)
+	    	{
+	    		ligne[j]=mat[l][j];
+	    	}
+	    	return ligne;
+	    }
+	    
+	    
+	    
+	    
 	    public static int nombreDoc (ArrayList<IDTF> tout)
 	    
 	    {
@@ -423,7 +441,7 @@ public class IDTF    {
     	
 
     	
-    		
+    	/*	
     	 for (int e = 0; e < nombreDoc(aI); e++) {                        //affiche la matrice en entier
              for (int r = 0; r < dico.size()-1; r++)          // il y a un -1 car le terme fin apparait dans le dico
                 System.out.printf("%9.4f ", mat[e][r]);
@@ -431,9 +449,9 @@ public class IDTF    {
              System.out.println();
     	 }
   	
-  
+  */
  
-     	System.out.println(nombreDoc(aI));
+     	//System.out.println(nombreDoc(aI));
 
 
  /*	 for (int u=0; u<dico.size();u++)
@@ -443,14 +461,16 @@ public class IDTF    {
          }
 	*/	
     
- /*	 
-	 for (int u=0; u<aI.size();u++){
+    double[] ligne= new double[dico.size()];
+    ligne=getLigne(mat, 1);
+    
+	 for (int u=0; u<dico.size();u++){
 
-	System.out.println(repFreq.get(u).getMot()+"       "+repFreq.get(u).getIdtf() );
+	System.out.println( ligne[u]);
 
 	 }
 
-     */
+   
 }
 
     
