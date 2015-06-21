@@ -357,9 +357,7 @@ public class IDTF    {
     	{
         	tout.set(k1,tout.get(k1).replaceAll("[\r\n]+", ""));
         	tout.set(k1, tout.get(k1).replaceAll(",", ""));
-        	//tout.set(k1, tout.get(k1).replaceAll(".", ""));
-
-
+        	//tout.set(k1, tout.get(k1).replaceAll("'", ""));
     	}
 
         for (String s : tout) 
@@ -380,6 +378,8 @@ public class IDTF    {
         	{  	
         		listTitre.get(p)[t]=listTitre.get(p)[t].replaceAll("[\r\n]+", "");
         		listTitre.get(p)[t]=listTitre.get(p)[t].replaceAll(",", "");
+        		//listTitre.get(p)[t]=listTitre.get(p)[t].replaceAll("'", "");
+
         	}
         }
         
@@ -389,8 +389,6 @@ public class IDTF    {
         {
         	for (int t=0; t< listTitre.get(p).length; t++)
         	{  	
-        	//	listTitre.get(p)[t]=listTitre.get(p)[t].replaceAll("[\r\n]+", "");
-        	//	listTitre.get(p)[t]=listTitre.get(p)[t].replaceAll(",", "");
 	        	double tf_p= tfCalculator(listTitre.get(p), listTitre.get(p)[t] );
 	        	IDTF idtf= new IDTF(listTitre.get(p)[t],tf_p );
 	        	repFreq.add(idtf);  	
@@ -400,12 +398,9 @@ public class IDTF    {
       
         for(int p=0; p<repFreq.size(); p++)           //aI contient dorenavant les valeurs correctes des IDTF
         {
-        	//if (repFreq.get(p).getMot().compareTo("fin")!=0)
-        	//{
+        	
 	        	IDTF idtf= new IDTF(repFreq.get(p).getMot(), repFreq.get(p).getIdtf()*repFre.get(p).getIdtf());
 	        	aI.add(p,idtf );                                                                
-	        	//System.out.println(repFreq.get(p).getMot()+"       "+repFreq.get(p).getIdtf() );
-        	//}
         }
        
        
@@ -420,42 +415,44 @@ public class IDTF    {
     	table.init(dico);
     	
     	
-    	double [][] mat = new double[nombreDoc(repFreq)][dico.size()];    
-    	mat=getMat(dico, aI);
+    	double [][] mat = new double[nombreDoc(aI)][dico.size()];    
+    	mat=getMat(dico, aI);                                      //créer la matrice dont chaque ligne est la valeur des IDTF du doc
     	
     	
     	
     	
 
     	
-    	
-       	
-    	 for (int e = 0; e < 1; e++) {                        //affiche la matrice en entier
+    		
+    	 for (int e = 0; e < nombreDoc(aI); e++) {                        //affiche la matrice en entier
              for (int r = 0; r < dico.size()-1; r++)          // il y a un -1 car le terme fin apparait dans le dico
-                 System.out.printf("%9.4f ", mat[e][r]);
+                System.out.printf("%9.4f ", mat[e][r]);
+            	 
              System.out.println();
-        }
-    	
-    
+    	 }
+  	
+  
  
+     	System.out.println(nombreDoc(aI));
 
 
-/* 	 for (int u=0; u<dico.size()-1;u++)
+ /*	 for (int u=0; u<dico.size();u++)
          {
-         	System.out.println(table.getIndice(table.getMot(u))+"  "+table.getMot(u));
-   		 	//System.out.println(u+"   " +dico.get(u));
+         	//System.out.println(table.getIndice(table.getMot(u))+"  "+table.getMot(u));
+   		 	System.out.println(u+"   " +dico.get(u));
          }
 	*/	
-      
- 	 
+    
+ /*	 
 	 for (int u=0; u<aI.size();u++){
 
-	System.out.println(aI.get(u).getMot()+"       "+aI.get(u).getIdtf() );
+	System.out.println(repFreq.get(u).getMot()+"       "+repFreq.get(u).getIdtf() );
 
 	 }
 
-     
+     */
 }
+
     
 }
 
