@@ -24,7 +24,6 @@ import org.w3c.dom.Element;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -365,7 +364,9 @@ public class IDTF    {
         } catch (Exception e) {
             e.printStackTrace();
         }
-		
+		ArrayList<String> listeStop = LectureListe.lectureListe("data/stopword.txt");
+		tout.removeAll(listeStop);
+		listTitre.removeAll(listeStop);
 		//String c=tout.get(0);
 		//tout.removeAll(Collections.singleton(c));
 		ArrayList<IDTF> repFre= new ArrayList<IDTF>();        //contient les idf

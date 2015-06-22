@@ -45,8 +45,6 @@ public class LectureListe {
 	return resultat;
 
 }
-<<<<<<< HEAD
+
 }
-=======
-}
->>>>>>> origin/master
+
