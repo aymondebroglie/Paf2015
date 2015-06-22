@@ -2,9 +2,16 @@
 public class CosineSimilarity {
 	
 	
+	private double cos;
+	
+	public  CosineSimilarity(double cos){
+		this.cos=cos;
+	}
+	
 	// methode qui à partir de 2 vecteurs calcul le cosine similarity
 	
-	public static double cosineSimilarity(double[] vectorA, double[] vectorB) {
+	public static double cosineSimilarity(double[] vectorA, double[] vectorB) 
+	{
 	    double dotProduct = 0.0;
 	    double normA = 0.0;
 	    double normB = 0.0;
@@ -15,7 +22,18 @@ public class CosineSimilarity {
 	    }   
 	    return dotProduct / (Math.sqrt(normA) * Math.sqrt(normB));
 	}
-	
+
+
+
+	public double getCos() {
+		return cos;
+	}
+
+
+
+	public void setCos(double cos) {
+		this.cos = cos;
+	}
 	
 	
 	
