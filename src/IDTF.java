@@ -78,6 +78,58 @@ public class IDTF    {
 	        return count / totalterms.length;
 	    }
 	  
+	  public double[][] getMat(TableDeHachageIDTF table, ArrayList<String> dico, ArrayList<IDTF> aIdtf){
+		  
+		  
+		  int s =  dico.size();
+		  double [][] mat = new double[311][s];
+		  int n = 0;
+		  int j = 0;
+		  
+		  for (int i = 0; i < s ; i ++){
+			  if (aIdtf.get(i).getMot().compareTo("fin") == 0){
+				  n = n + 1;
+			  }
+			  else{
+				  j = table.getIndice(aIdtf.get(i).getMot());
+				  mat[n][j] = aIdtf.get(i).getIdtf(); // a vérifier que ce soit la bonne méthode
+			  }
+		  }
+		  
+		  
+		  return mat;
+	  }
+	  
+	  
+	  public ArrayList<String> dictionnaire(ArrayList<String> base){
+	    	
+	    	ArrayList<String> dico = new ArrayList<String>();
+	    	int s1 = base.size();
+	    	int s2 = 0;
+	    	int j = 0;
+	    	int find = 0;
+	    	
+	    	for(int i = 0; i < s1; i++){
+	    		if(base.get(i).compareTo("fin") != 0){
+	    			while(find == 0 && j < s2){
+	    				if(base.get(i).compareTo(dico.get(j)) == 0){
+	    					find = 1;
+	    				}
+	    				j = j +1;
+	    			}
+	    			
+	    			if (find == 0){
+	    				dico.add(base.get(i));
+	    			}
+	    			find = 0;
+	    			j = 0;
+	    		}
+	    	}
+	    	
+	    	return dico;
+	    }
+	    
+	  
 	  
 	    /**
 	     * Calcule idf du term termToCheck
@@ -131,6 +183,60 @@ public class IDTF    {
 	        	res.add(i-debut, tab.get(i));
 	        }
 	        return res;
+	    }
+	    
+	    public String getTheme(ArrayList<IDTF> dico, double [] compare, double [][] base){
+	    	String theme ="";
+	    	TableDeHachageIDTF docExemple = new TableDeHachageIDTF();
+	    	int s = base.length;
+	    	double min = 1;
+	    	double cos = 0;
+	    	
+	    	for(int i = 0; i < s; i++){
+	    		
+	    		cos = Math.abs(CosineSimilarity.cosineSimilarity(compare, base[i]));
+	    		if(cos < min){
+	    			min = cos;
+	    			theme = docExemple.getTheme(i);
+	    			
+	    		}
+	    		
+	    	}
+	    	
+	    	return theme;
+	    }
+	    
+	    public ArrayList<IDTF> tri(ArrayList<IDTF> base, ArrayList<String> dico){
+	    	
+	    	TableDeHachageIDTF table = new TableDeHachageIDTF();
+	    	table.init(dico);
+	    	IDTF transfert = new IDTF();
+	    	String j = "";
+	    	int find = 0;
+	    	int k = 0;
+	    	
+	    	for (int i = 0; i < base.size(); i ++){
+	    		j = table.getMot(i);
+	    		if(j.compareTo(base.get(i).getMot()) != 0){
+	    			
+	    			k = i;
+	    			while (find == 0 && (k< base.size())){
+	    				
+	    				if(j.compareTo(base.get(k).getMot()) == 0){
+	    					find = 1;
+	    					transfert = base.get(i);
+	    	    			base.set(k, base.get(i));
+	    	    			base.set(i, transfert);
+	    				}
+	    				k = k + 1;
+	    			}
+	    			
+	    			find = 0;
+	    			
+	    		}
+	    	}
+	    	return base;
+	    	
 	    }
 	 
 	    public static ArrayList<IDTF> tri_fusion(ArrayList<IDTF> tab)
