@@ -8,6 +8,14 @@ import java.io.*;
 public class Main {
 
 	public static void main(String[] args) {
+		ArrayList<String> list1; 
+		Recherche rech = new Recherche("fr-patent-document","city");
+		list1 = rech.recherche();
+		ArrayList<SebVille> occurence = CalculOccurenceVille.calculOccurenceVille(list1);
+		for (int j=0; j<occurence.size(); j++)
+        	System.out.println(occurence.get(j));
+		
+		LectureListe.lectureListe("data/stopword.txt");
 		
 		ArrayList<String> listeStop = LectureListe.lectureListe("data/stopword.txt");
 	
@@ -39,8 +47,8 @@ public class Main {
 		/*for (int i = 0; i <list1.size();i++){
 			if(list1.get(i).length() > 2 )
 			list1.set(i, list1.get(i).substring(0,2));*/
-		}
-		
+	//	}
+//}
 		/* Code pour les villes*/
 	/*	System.out.println(list1.size());
 		TabledeHachage table = new TabledeHachage();
@@ -84,6 +92,9 @@ public class Main {
 		Resultat resultat = listeprenom.getStat(list1);
 		//System.out.println(list.get(200).getPrenom());
 		System.out.println("m = "+resultat.getPourcentageHomme()+", f = "+resultat.getPourcentageFemme()+" u1 = " + resultat.getPourcentageMixte() +", u2 = "+resultat.getPourcentageIndetermine()+"");
-	}
 
-	}*/
+//	*/
+		}
+}
+	
+
