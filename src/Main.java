@@ -9,14 +9,19 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		LectureListe.lectureListe("data/stopword.txt");
-	}
+		ArrayList<String> listeStop = LectureListe.lectureListe("data/stopword.txt");
+	
 		// Code pour la recherche
-		/*ArrayList<String> list1; 
-		Recherche rech = new Recherche("inventors","postcode");
+		ArrayList<String> list1; 
+		Recherche rech = new Recherche("fr-bibliographic-data","invention-title");
 		list1 = rech.recherche();
 		list1.removeAll(Collections.singleton(0));
-		list1.removeAll(Collections.singleton(""));*/
+		list1.removeAll(Collections.singleton(""));
+		list1.removeAll(listeStop);
+		for(int i =0 ; i <list1.size() ; i++){
+			System.out.println(list1.get(i));
+		}
+	}
 		
 		/* Code pour les date */
 		/*ArrayList<String> list2 = new ArrayList<String>();
