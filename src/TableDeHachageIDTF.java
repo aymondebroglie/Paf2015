@@ -15,7 +15,15 @@ public class TableDeHachageIDTF {
 		motIndice= new Hashtable<String, Integer>();
 		indiceMot = new Hashtable<Integer, String>();
 		docExemple = new Hashtable<Integer, String>();
-		
+		docExemple.put(0, "aeronotique");
+		docExemple.put(1, "bio-technologie");
+		docExemple.put(2, "chimie organique");
+		docExemple.put(3, "communication numerique");
+		docExemple.put(4, "energie");
+		docExemple.put(5, "instrument de mesure");
+		docExemple.put(6, "pompe");
+		docExemple.put(7, "technologie informatique");
+		docExemple.put(0, "technologie médical");
 	}
 	
 	public void init(ArrayList<String> init){
