@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.io.*;
 
 
@@ -6,23 +8,23 @@ import java.io.*;
 public class Main {
 
 	public static void main(String[] args) {
-<<<<<<< HEAD
-		ArrayList<String> list1; 
-		Recherche rech = new Recherche("fr-patent-document","city");
-		list1 = rech.recherche();
-		ArrayList<SebVille> occurence = CalculOccurenceVille.calculOccurenceVille(list1);
-		for (int j=0; j<occurence.size(); j++)
-        	System.out.println(occurence.get(j));
-=======
+		
 		
 		LectureListe.lectureListe("data/stopword.txt");
-	}
+		
+		ArrayList<String> listeStop = LectureListe.lectureListe("data/stopword.txt");
+	
 		// Code pour la recherche
-		/*ArrayList<String> list1; 
-		Recherche rech = new Recherche("inventors","postcode");
+		ArrayList<String> list1; 
+		Recherche rech = new Recherche("fr-bibliographic-data","invention-title");
 		list1 = rech.recherche();
 		list1.removeAll(Collections.singleton(0));
-		list1.removeAll(Collections.singleton(""));*/
+		list1.removeAll(Collections.singleton(""));
+		list1.removeAll(listeStop);
+		for(int i =0 ; i <list1.size() ; i++){
+			System.out.println(list1.get(i));
+		}
+	}
 		
 		/* Code pour les date */
 		/*ArrayList<String> list2 = new ArrayList<String>();
@@ -40,8 +42,8 @@ public class Main {
 		/*for (int i = 0; i <list1.size();i++){
 			if(list1.get(i).length() > 2 )
 			list1.set(i, list1.get(i).substring(0,2));*/
-		}
-		
+	//	}
+//}
 		/* Code pour les villes*/
 	/*	System.out.println(list1.size());
 		TabledeHachage table = new TabledeHachage();
@@ -85,11 +87,9 @@ public class Main {
 		Resultat resultat = listeprenom.getStat(list1);
 		//System.out.println(list.get(200).getPrenom());
 		System.out.println("m = "+resultat.getPourcentageHomme()+", f = "+resultat.getPourcentageFemme()+" u1 = " + resultat.getPourcentageMixte() +", u2 = "+resultat.getPourcentageIndetermine()+"");
-<<<<<<< HEAD
-	*/}
 
-}
-	}
+//	*/
+		}
 
-	}*/
->>>>>>> a3074f6... On a fait un problème qui du ficher .txt renvoie un tableau des mots stop
+	
+

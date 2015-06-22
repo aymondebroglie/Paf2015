@@ -63,8 +63,9 @@ public class Recherche {
                                                 
                                         
                                       String s=eElement.getElementsByTagName(noeudFils).item(j).getTextContent();
-                                     String[] part= s.split(" " );
-                                        resultat.add(part[0].toLowerCase());
+                                    /* String[] part= s.split(" " );
+                                        resultat.add(part[0].toLowerCase());*/
+                                        resultat.add(s.toLowerCase());
                                         j++;
                                         
                                         
