@@ -345,7 +345,7 @@ public class IDTF    {
 
         }
 		
-		
+       
         
         for (int p=0; p< listTitre.size();p++) 
         {   
@@ -363,7 +363,10 @@ public class IDTF    {
 		for (int k1=0; k1<tout.size();k1++)
     	{
         	tout.set(k1,tout.get(k1).replaceAll("[\r\n]+", ""));
-        	tout.set(k1, tout.get(k1).replaceAll(",", ""));
+        	tout.set(k1,tout.get(k1).replaceAll(",", ""));
+        	tout.set(k1,tout.get(k1).replaceAll("\\.", "")); 
+        	tout.set(k1,tout.get(k1).replaceAll(",", "")); 
+        	
     	}
 
 		
@@ -385,9 +388,17 @@ public class IDTF    {
         	{  	
         		listTitre.get(p)[t]=listTitre.get(p)[t].replaceAll("[\r\n]+", "");
         		listTitre.get(p)[t]=listTitre.get(p)[t].replaceAll(",", "");
+        		listTitre.get(p)[t]=listTitre.get(p)[t].replaceAll("\\.", "");
+        		listTitre.get(p)[t]=listTitre.get(p)[t].replaceAll(",", "");
         	}
         }
      
+        //[^\w]
+        for(int k=0; k<tout.size();k++)
+    	{
+    		System.out.println(tout.get(k));
+    	}
+   
         
 
         
