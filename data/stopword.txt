@@ -1,3 +1,12 @@
+de
+un
+une
+du
+(i)
+(j)
+d'un
+et/ou
+à
 alors
 au
 aucuns
@@ -26,7 +35,7 @@ devrait
 doit
 donc
 dos
-début
+debut
 elle
 elles
 en
@@ -49,7 +58,7 @@ la
 le
 les
 leur
-là
+la
 ma
 maintenant
 mais
@@ -60,7 +69,7 @@ mon
 mot
 même
 ni
-nommés
+nommes
 notre
 nous
 ou
@@ -109,10 +118,10 @@ votre
 vous
 vu
 ça
-étaient
-état
-étions
-été
+etaient
+etat
+etions
+ete
 être
 (0)
 (1)
@@ -226,8 +235,3 @@ vu
 (109)
 (110)
 (111)
--
-,
-.
-:
-"
