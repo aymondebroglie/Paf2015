@@ -115,7 +115,7 @@ public class IDTF    {
             int j = 0;
             
             for (int i = 0; i < s ; i ++){
-                    if (aIdtf.get(i).getMot().compareTo("fin") == 0){
+                    if (aIdtf.get(i).getMot().compareTo("finnn") == 0){
                             n = n + 1;
                     }
                     else{
@@ -147,7 +147,7 @@ public class IDTF    {
 	    	int nombreDoc=0;
 	    	for( int k=0; k<tout.size();k++)
 	    	{
-	    		if(tout.get(k).getMot().compareTo("fin")==0)
+	    		if(tout.get(k).getMot().compareTo("finnn")==0)
 	    			nombreDoc++;
 	    	}
 	    	return nombreDoc;
@@ -159,7 +159,7 @@ public class IDTF    {
 	    	int nombreDoc=0;
 	    	for( int k=0; k<tout.size();k++)
 	    	{
-	    		if(tout.get(k).getMot().compareTo("fin")!=0)
+	    		if(tout.get(k).getMot().compareTo("finnn")!=0)
 	    			nombreDoc++;
 	    	}
 	    	return nombreDoc;
@@ -265,7 +265,7 @@ public class IDTF    {
 		
 		try {
 			 
-			File repertoire= new File("C:/Users/Mehdi/Desktop/B");
+			File repertoire= new File("C:/Users/Mehdi/Desktop/tr");
 			 String[] listefichiers = repertoire.list();
             
             
@@ -276,7 +276,7 @@ public class IDTF    {
             {
             	 if(listefichiers[k].endsWith(".xml")==true)
             	 {             
-		            File fXmlFile = new File("C:/Users/Mehdi/Desktop/B/"+listefichiers[k]);
+		            File fXmlFile = new File("C:/Users/Mehdi/Desktop/tr/"+listefichiers[k]);
 		            Document doc = dBuilder.parse(fXmlFile);
 		            
 		            doc.getDocumentElement().normalize();
@@ -314,8 +314,8 @@ public class IDTF    {
 			                           }
 			                           if (eElement.getElementsByTagName("p").item(j)==null)
 			                           {
-			                        	   tout.add("fin");
-			                        	   listTitre.add("fin".split(" "));
+			                        	   tout.add("finnn");
+			                        	   listTitre.add("finnn".split(" "));
 			                               i=-1;
 			                           }
 		                           }
@@ -336,7 +336,7 @@ public class IDTF    {
         } catch (Exception e) {
             e.printStackTrace();
         }
-		ArrayList<String> listeStop = LectureListe.lectureListe("data/stopword.txt");
+		ArrayList<String> listeStop = LectureListe.lectureListe("C:/Users/Mehdi/Documents/stopword.txt");
 
         for (int k=0; k<tout.size();k++) 
         {	
@@ -364,8 +364,11 @@ public class IDTF    {
     	{
         	tout.set(k1,tout.get(k1).replaceAll("[\r\n]+", ""));
         	tout.set(k1,tout.get(k1).replaceAll(",", ""));
+        	tout.set(k1,tout.get(k1).replaceAll("l'", ""));
+        	tout.set(k1,tout.get(k1).replaceAll("d'", ""));
         	tout.set(k1,tout.get(k1).replaceAll("\\.", "")); 
-        	tout.set(k1,tout.get(k1).replaceAll(",", "")); 
+        	tout.set(k1,tout.get(k1).replaceAll("\\(", "")); 
+        	tout.set(k1,tout.get(k1).replaceAll("\\)", "")); 
         	
     	}
 
@@ -388,17 +391,14 @@ public class IDTF    {
         	{  	
         		listTitre.get(p)[t]=listTitre.get(p)[t].replaceAll("[\r\n]+", "");
         		listTitre.get(p)[t]=listTitre.get(p)[t].replaceAll(",", "");
+        		listTitre.get(p)[t]=listTitre.get(p)[t].replaceAll("l'", "");
+        		listTitre.get(p)[t]=listTitre.get(p)[t].replaceAll("d'", "");
         		listTitre.get(p)[t]=listTitre.get(p)[t].replaceAll("\\.", "");
-        		listTitre.get(p)[t]=listTitre.get(p)[t].replaceAll(",", "");
+        		listTitre.get(p)[t]=listTitre.get(p)[t].replaceAll("\\(", "");
+        		listTitre.get(p)[t]=listTitre.get(p)[t].replaceAll("\\)", "");
         	}
         }
      
-        //[^\w]
-        for(int k=0; k<tout.size();k++)
-    	{
-    		System.out.println(tout.get(k));
-    	}
-   
         
 
         
@@ -418,7 +418,7 @@ public class IDTF    {
         {
         	
 	        	IDTF idtf= new IDTF(repFreq.get(p).getMot(), repFreq.get(p).getIdtf()*repFre.get(p).getIdtf());
-	        	if(repFreq.get(p).getMot().compareTo("fin")==0)
+	        	if(repFreq.get(p).getMot().compareTo("finnn")==0)
 	        		idtf.setIdtf(0);
 	        	aI.add(p,idtf );                                                                
         }
@@ -440,12 +440,9 @@ public class IDTF    {
     	mat=getMat(dico, aI);                                      //créer la matrice dont chaque ligne est la valeur des IDTF du doc
     	
 
-    	/*for(int k=0; k<aI.size();k++)
-    	{
-    		System.out.println(aI.get(k).getMot()+ "               "+ aI.get(k).getIdtf());
-    	}
+    	
    
-    	*/
+    	
     	
    
     	
@@ -455,7 +452,7 @@ public class IDTF    {
             	 
              System.out.println();
     	 }
-  	
+  
 
 
     	
@@ -464,14 +461,15 @@ public class IDTF    {
  
     double[] ligne0= new double[dico.size()];
     double[] ligne1= new double[dico.size()];
-    ligne1=getLigne(mat, 1);
-    ligne0=getLigne(mat, 0);
+  //  ligne1=getLigne(mat, 1);
+   // ligne0=getLigne(mat, 0);
+    
 
     
     double val=0;
-    val=CosineSimilarity.cosineSimilarity(ligne0, ligne1);
+   // val=CosineSimilarity.cosineSimilarity(ligne0, ligne1);
     
-    System.out.println(val);
+    System.out.println(nombreDoc(aI));
     
 
     
