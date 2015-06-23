@@ -278,6 +278,7 @@ public class IDTF    {
             	 {             
 		            File fXmlFile = new File("C:/Users/Mehdi/Desktop/tr/"+listefichiers[k]);
 		            Document doc = dBuilder.parse(fXmlFile);
+		            fXmlFile.renameTo(new File("C:/Users/Mehdi/Desktop/tr/"+k+".xml"));
 		            
 		            doc.getDocumentElement().normalize();
 		            NodeList nList = doc.getElementsByTagName("abstract");
