@@ -143,6 +143,21 @@ public class  Kmeans{
  
      public ArrayList[] getClusters()
     {
+    	 for (int k = 0 ; k < numClusters; k++){
+    		 System.out.println(" \n Cluster " + k);
+    		 for (int i = 0 ; i < clusters[k].size(); i++)
+    		 {
+    			    
+    				 double [] tableau = (double [] ) clusters[k].get(i);
+    				 System.out.println(" \n Element " + i);
+    				 for(int j = 0 ; j < tableau.length;j++){
+    					 System.out.print(tableau[j] + " ");
+    				 }
+    			 
+    			 
+    		 }
+    		 
+    	 }
          return clusters;
     }
  

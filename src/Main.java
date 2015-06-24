@@ -9,25 +9,21 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		double [][] donne= new double[3] [1];
+		double [][] donne= new double[3] [2];
 		
 			donne[0][0] = 0;
 			donne[1][0] = 0.5;
 			donne[2][0] = 2;
+			donne[0][1] = 0.5;
+			donne[1][1] = 0.25;
+			donne[2][1] = 2.5;
+			
 			
 		Kmeans moyenne = new Kmeans(donne,2 )	;
 		moyenne.calculateClusters();
 		ArrayList[] liste = moyenne.getClusters();
 	
-		
-		for(int i = 0 ; i< liste.length;i++){
-			System.out.println("Nouveau cluster");
-			for (int j = 0 ; j<liste[i].size();j++){
-				System.out.println((double[])(liste[i].get(j)));
-			}
-		}
-		
-		System.out.println(moyenne.getClusterVars());
+	
 	//	LectureListe.lectureListe("data/stopword.txt");
 		
 	//	ArrayList<String> listeStop = LectureListe.lectureListe("data/stopword.txt");
