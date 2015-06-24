@@ -9,21 +9,39 @@ public class Main {
 
 	public static void main(String[] args) {
 		
+		double [][] donne= new double[3] [1];
 		
-		LectureListe.lectureListe("data/stopword.txt");
+			donne[0][0] = 0;
+			donne[1][0] = 0.5;
+			donne[2][0] = 2;
+			
+		Kmeans moyenne = new Kmeans(donne,2 )	;
+		moyenne.calculateClusters();
+		ArrayList[] liste = moyenne.getClusters();
+	
 		
-		ArrayList<String> listeStop = LectureListe.lectureListe("data/stopword.txt");
+		for(int i = 0 ; i< liste.length;i++){
+			System.out.println("Nouveau cluster");
+			for (int j = 0 ; j<liste[i].size();j++){
+				System.out.println((double[])(liste[i].get(j)));
+			}
+		}
+		
+		System.out.println(moyenne.getClusterVars());
+	//	LectureListe.lectureListe("data/stopword.txt");
+		
+	//	ArrayList<String> listeStop = LectureListe.lectureListe("data/stopword.txt");
 	
 		// Code pour la recherche
-		ArrayList<String> list1; 
-		Recherche rech = new Recherche("fr-bibliographic-data","invention-title");
-		list1 = rech.recherche();
-		list1.removeAll(Collections.singleton(0));
-		list1.removeAll(Collections.singleton(""));
-		list1.removeAll(listeStop);
-		for(int i =0 ; i <list1.size() ; i++){
-			System.out.println(list1.get(i));
-		}
+	//	ArrayList<String> list1; 
+	// rech = new Recherche("fr-bibliographic-data","invention-title");
+	//	list1 = rech.recherche();
+	//	list1.removeAll(Collections.singleton(0));
+	//	list1.removeAll(Collections.singleton(""));
+	//	list1.removeAll(listeStop);
+	//	for(int i =0 ; i <list1.size() ; i++){
+	//		System.out.println(list1.get(i));
+	//	}
 	}
 		
 		/* Code pour les date */
