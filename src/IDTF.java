@@ -27,9 +27,11 @@ import org.w3c.dom.Element;
 
 
 
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -39,10 +41,43 @@ import java.util.Set;
 
 
 
-
-
 public class IDTF    {
 
+	
+	public static boolean copyFile(File source, File dest){
+		try{
+			// Declaration et ouverture des flux
+			java.io.FileInputStream sourceFile = new java.io.FileInputStream(source);
+	 
+			try{
+				java.io.FileOutputStream destinationFile = null;
+	 
+				try{
+					destinationFile = new FileOutputStream(dest);
+	 
+					// Lecture par segment de 0.5Mo 
+					byte buffer[] = new byte[512 * 1024];
+					int nbLecture;
+	 
+					while ((nbLecture = sourceFile.read(buffer)) != -1){
+						destinationFile.write(buffer, 0, nbLecture);
+					}
+				} finally {
+					destinationFile.close();
+				}
+			} finally {
+				sourceFile.close();
+			}
+		} catch (IOException e){
+			e.printStackTrace();
+			return false; // Erreur
+		}
+	 
+		return true; // Résultat OK  
+	}
+	
+
+	
 	private double idf;
 	private double tf;
 	private double idtf;
@@ -340,7 +375,7 @@ public class IDTF    {
 	    {
 	        int taille = tab.size();
 	        if(taille<=1)
-	            return tab;
+	        return tab;
 	        else
 	        {
 	            int mileu = taille/2;
@@ -614,8 +649,8 @@ public class IDTF    {
     double[] med= new double[nombreDoc(aI)-1];     // cose simi pr au 2nd fichier exemple, l'avant dernier ajouté
     for(int k=0; k<nombreDoc(aI)-1;k++)
     {
-       auto[k]= CosineSimilarity.cosineSimilarity(getLigne(mat, k), getLigne(mat, nombreDoc(aI)-1));
-       med[k]= CosineSimilarity.cosineSimilarity(getLigne(mat, k), getLigne(mat, nombreDoc(aI)-2));
+       auto[k]= CosineSimilarity.cosineSimilarity(getLigne(mat, k), getLigne(mat, nombreDoc(aI)-2));        //avant dernier ex
+       med[k]= CosineSimilarity.cosineSimilarity(getLigne(mat, k), getLigne(mat, nombreDoc(aI)-1));         // dernier ex
        
        if(med[k]>auto[k])
        {
@@ -638,7 +673,11 @@ public class IDTF    {
    
     }
     
+    
 
+    
+    
+    
     
    
 
