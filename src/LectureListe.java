@@ -45,6 +45,11 @@ public class LectureListe {
 	return resultat;
 
 }
+	
+	public static double max4(double arg1, double arg2, double arg3, double arg4){
+		return Math.max(arg1,Math.max(arg2, Math.max(arg3, arg4)));
+		
+	}
 
 }
 
