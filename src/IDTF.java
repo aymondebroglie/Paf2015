@@ -209,33 +209,55 @@ public class IDTF    {
 	    }
 	  
    
-   public String getTheme(ArrayList<IDTF> dico, double [] compare, double [][] base){
-   	String theme ="";
-   	TableDeHachageIDTF docExemple = new TableDeHachageIDTF();
-   	int s = base.length;
-   	double min = 1;
-   	double cos = 0;
-   	
-   	for(int i = 0; i < s; i++){
-   		
-   		cos = Math.abs(CosineSimilarity.cosineSimilarity(compare, base[i]));
-   		if(cos < min){
-   			min = cos;
-   			theme = docExemple.getTheme(i);
-   			
-   		}
-   		
-   	}
-   	
-   	return theme;
-   }
+
+	public static double max4(double arg1, double arg2, double arg3, double arg4){
+		return Math.max(arg1,Math.max(arg2, Math.max(arg3, arg4)));
+		
+	}
+
+   
+   
+   
+   public static ArrayList<String> getTheme(double [][] base, int c)
+   {
+       ArrayList<String> theme = new ArrayList<String>();
+       TableDeHachageIDTF docExemple = new TableDeHachageIDTF();
+       int s = base.length;
+       double max = 0;
+       double cos = 0;
+       for(int j = 0; j< s - c; j++){
+    	   max=0;
+               for(int i = s - c; i < s; i++){
+            	   
+                       
+                       cos = Math.abs(CosineSimilarity.cosineSimilarity(IDTF.getLigne(base, j), IDTF.getLigne(base, i)));
+                       if(cos >= max)
+                       {
+                    	   	 max = cos; 
+                               if(i==s-c)
+                               {
+                            	   theme.add(j, docExemple.getTheme(i - s + c));
+                               }
+                               else
+                               {
+                    	                    	   	 
+                    	   	 theme.set(j, docExemple.getTheme(i - s + c));
+                               }
+                       }
+       }
+       
+               
+       }
+       
+       return theme;
+}
+
    
    public static void lectTxt(String filename, ArrayList<String> list1, ArrayList<String []> list2){
        FileReader fr=null;
            BufferedReader br=null;
            String [] intermediaire = null;
            ArrayList<String> total = new ArrayList<String>();
-           int i = 0;
            int s = 0;
            int t = 0;
            
@@ -254,11 +276,11 @@ public class IDTF    {
                            
                            while (lineToRead != null){
    
-                                   if( i == 0){
+                                  /* if( i == 0){
                                            lineToRead = br.readLine();
                                            i = 1;
                                    }
-                                   
+                                   */
                                    lineToRead.replaceAll("        ", " ");
                                    lineToRead.toLowerCase();
                                    lineToRead = lineToRead.replaceAll("é", "e");
@@ -337,7 +359,87 @@ public class IDTF    {
                    
 }
 
-	    
+   public static void ajoutEx(String rep, ArrayList<String> tout, ArrayList<String []> listTitre)
+   {
+	   
+	   int i=1;
+       int j=0;
+	   
+       try {
+			 
+			File repertoire= new File(rep);
+			 String[] listefichiers = repertoire.list();
+           
+           
+           DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+           DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+           
+           for (int k=0; k<listefichiers.length;k++)
+           {
+           	 if(listefichiers[k].endsWith(".xml")==true)
+           	 {             
+		            File fXmlFile = new File(rep+"/"+listefichiers[k]);
+		            Document doc = dBuilder.parse(fXmlFile);
+		            
+		            doc.getDocumentElement().normalize();
+		            NodeList nList = doc.getElementsByTagName("abstract");
+		            
+		            for (int temp = 0; temp < nList.getLength(); temp++)
+		            {
+		                     
+		                    Node nNode = nList.item(temp);
+		     
+		     
+		                    if (nNode.getNodeType() == Node.ELEMENT_NODE) 
+		                    {
+		                            j=0;
+		                            Element eElement = (Element) nNode;
+		                           
+		                                    
+		                            if (eElement.getElementsByTagName("p").item(j)!=null)
+		                            {
+		                                i=1;
+		                            }
+		                            while (i>0)
+		                            { 
+			                           String s= eElement.getElementsByTagName("p").item(j).getTextContent().toLowerCase();
+			                           j++;
+			                           String[] parts= s.split(" ");
+			                           listTitre.add(parts);
+			                           
+			                           for (int k1=0; k1<parts.length+1; k1++) 
+			                           {
+			                        	   if(k1<parts.length)
+			                        		   tout.add(parts[k1]);
+		                        
+		                        	   
+			                           }
+			                           if (eElement.getElementsByTagName("p").item(j)==null)
+			                           {
+			                        	   tout.add("finnn");
+			                        	   listTitre.add("finnn".split(" "));
+			                               i=-1;
+			                           }
+		                           }
+		                            
+		                           
+		                        
+		                            
+		                    }
+		                    
+		                    
+		
+		            }
+           	 }
+            }
+           
+          
+           
+       } catch (Exception e) {
+           e.printStackTrace();
+       }	   
+   }
+
 	    
 	    //tri**********************************************************************	  
 	    public static ArrayList<IDTF> fusion(ArrayList<IDTF> tab1, ArrayList<IDTF> tab2)
@@ -384,7 +486,8 @@ public class IDTF    {
 	            return fusion(tri_fusion(gauche),tri_fusion(droite));
 	        }
 	    }
-	    /*public static ArrayList<IDTF> tri(ArrayList<IDTF> base, ArrayList<String> dico){           
+	    
+	    public static ArrayList<IDTF> tri(ArrayList<IDTF> base, ArrayList<String> dico){           
             TableDeHachageIDTF table = new TableDeHachageIDTF();
             table.init(dico);
             IDTF transfert = new IDTF();
@@ -412,10 +515,9 @@ public class IDTF    {
                             
                     }
             }
-            return base;
-            
+            return base;  
     }
-	    */
+	    
      //fin tri**********************************************************************************
 	    
 	    
@@ -435,7 +537,7 @@ public class IDTF    {
 		
 		try {
 			 
-			File repertoire= new File("C:/Users/Mehdi/Desktop/tr");
+			 File repertoire= new File("C:/Users/Mehdi/Desktop/tr");
 			 String[] listefichiers = repertoire.list();
             
             
@@ -489,10 +591,7 @@ public class IDTF    {
 			                        	   listTitre.add("finnn".split(" "));
 			                               i=-1;
 			                           }
-		                           }
-		                            
-		                           
-		                        
+		                           }       
 		                            
 		                    }
 		                    
@@ -508,19 +607,20 @@ public class IDTF    {
             e.printStackTrace();
         }
 		ArrayList<String> listeStop = LectureListe.lectureListe("C:/Users/Mehdi/Documents/stopword.txt");
-		lectTxt("C:/Users/Mehdi/Downloads/auto.txt", tout, listTitre);
-		lectTxt("C:/Users/Mehdi/Downloads/a.txt", tout, listTitre);
+		int compt=0;
+		IDTF.ajoutEx("C:/Users/Mehdi/Desktop/auto", tout, listTitre);
+		IDTF.ajoutEx("C:/Users/Mehdi/Desktop/sciencemed", tout, listTitre);
+		//IDTF.ajoutEx("C:/Users/Mehdi/Desktop/aero", tout, listTitre);
+		//IDTF.ajoutEx("C:/Users/Mehdi/Desktop/cosme", tout, listTitre);
+	//	IDTF.ajoutEx("C:/Users/Mehdi/Desktop/energie", tout, listTitre);
+		
+		for(int k=0;k<tout.size(); k++)
+		{
+			//System.out.println(tout.get(k));
+		}
+		
 	//	lectTxt("C:/Users/Mehdi/Downloads/cea.txt", tout, listTitre);
-		
 
-        for (int k=0; k<tout.size();k++) 
-        {	
-        	System.out.println(tout.get(k));
-
-        }
-		
-		
-		
 		
         for (int k=0; k<tout.size();k++) 
         {	
@@ -606,24 +706,22 @@ public class IDTF    {
 	        		idtf.setIdtf(0);
 	        	aI.add(p,idtf );                                                                
         }
-       
-       
-        
-        
       
         Set<String> mySet = new HashSet<String>(tout);           //permet d'éliminer les occurences
         ArrayList<String> dico = new ArrayList<String>(mySet);
         
-        
     	TableDeHachageIDTF table= new TableDeHachageIDTF();
     	table.init(dico);
-    	
-    	
-    	
     	double [][] mat = new double[nombreDoc(aI)][dico.size()];    
-    	mat=getMat(dico, aI);                                      //créer la matrice dont chaque ligne est la valeur des IDTF du doc
+    	mat=getMat(dico, aI);     //créer la matrice dont chaque ligne est la valeur des IDTF du doc
     	
-
+    	
+    	
+    	/*Kmeans moy= new Kmeans(mat, 9);
+    	moy.calculateClusters();
+    	moy.getClusters();
+    	
+*/
     	
    
     	
@@ -647,11 +745,13 @@ public class IDTF    {
     int p=0;
     double[] auto= new double[nombreDoc(aI)-1];   //cosine simi par rapport au fichier exemple 1 (le dernier ajouté), ici automobile
     double[] med= new double[nombreDoc(aI)-1];     // cose simi pr au 2nd fichier exemple, l'avant dernier ajouté
-    for(int k=0; k<nombreDoc(aI)-1;k++)
+    for(int k=0; k<nombreDoc(aI)-20;k++)
     {
-       auto[k]= CosineSimilarity.cosineSimilarity(getLigne(mat, k), getLigne(mat, nombreDoc(aI)-2));        //avant dernier ex
-       med[k]= CosineSimilarity.cosineSimilarity(getLigne(mat, k), getLigne(mat, nombreDoc(aI)-1));         // dernier ex
-       
+    	for(int u=0;u<10;u++)
+    	{
+       auto[k]+= CosineSimilarity.cosineSimilarity(getLigne(mat, k), getLigne(mat, nombreDoc(aI)-11-u));        //avant dernier ex
+       med[k]+= CosineSimilarity.cosineSimilarity(getLigne(mat, k), getLigne(mat, nombreDoc(aI)-1-u));         // dernier ex
+    	}
        if(med[k]>auto[k])
        {
     	   brevMed[p]=k;
@@ -668,18 +768,23 @@ public class IDTF    {
     	   
     }
     
-    for (int k=0; k<nombreDoc(aI)-2; k++){
-    	System.out.println(brevMed[k]+" et pour l'auto: "+brevAuto[k]);
-   
+    for (int k=0; k<nombreDoc(aI)-20; k++){
+    	System.out.println(brevMed[k]+" et pour l'auto: "+brevAuto[k]);   
     }
     
     
 
+    /*ArrayList<String> truc= new ArrayList<String>();
+    truc=IDTF.getTheme(mat, compt);
+    ArrayList<SebVille> putin= new ArrayList<SebVille>();
+    putin=CalculOccurenceVille.calculOccurenceVille(truc, 0.01);
     
     
     
-    
-   
+   for (int k=0; k<putin.size();k++){
+	   System.out.println(putin.get(k).getNomVille()+"   "+putin.get(k).getPourcentage());
+   }
+   */
 
 }
 

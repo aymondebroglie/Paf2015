@@ -1,14 +1,14 @@
-import java.io.*;
+//import java.io.*;
 
-import org.jdom2.*;
-import org.jdom2.input.SAXBuilder;
-
+//import org.jdom2.*;
+//import org.jdom2.input.SAXBuilder;
+/*
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Iterator;
 
 public class JDOM2 {
-	private org.jdom2.Document document;
+	//private org.jdom2.Document document;
 	private ArrayList<String> listeFinal = new ArrayList<String>();
 
 	public JDOM2() {
@@ -82,4 +82,4 @@ public class JDOM2 {
 		}
 
 	}
-}
+}*/
