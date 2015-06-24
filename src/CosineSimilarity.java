@@ -37,6 +37,26 @@ public class CosineSimilarity {
 		this.cos = cos;
 	}
 	
+	public static ArrayList<ArrayList<Integer>> categories(double[][] docs,ArrayList<double[]> exemples) {
+		int nbCategories=exemples.size();
+		ArrayList<ArrayList<Integer>> res=new ArrayList<ArrayList<Integer>>(nbCategories);
+		for (int i=0; i<nbCategories; i++) {
+			ArrayList<Integer> c=res.get(i);
+			c=new ArrayList<Integer>();
+		}
+		for (int i=0; i<docs.length; i++) {
+			int categorie=0;
+			double cosine=Math.abs(cosineSimilarity(exemples.get(0),docs[i]));
+			for (int j=1; i<nbCategories; i++) {
+				if(Math.abs(cosineSimilarity(exemples.get(j),docs[i]))>cosine) {
+					categorie=j;
+					cosine=Math.abs(cosineSimilarity(exemples.get(j),docs[i]));
+				}
+			res.get(categorie).add(new Integer(i));
+			}
+		}
+		return res;
+	}
 	
 	
 

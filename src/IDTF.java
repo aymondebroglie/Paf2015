@@ -293,7 +293,7 @@ public class IDTF    {
 		
 		try {
 			 
-			File repertoire= new File("C:/Users/Mehdi/Desktop/B");
+			File repertoire= new File("C:\\Users\\oussama\\Desktop\\brevet\\");
 			 String[] listefichiers = repertoire.list();
             
             
@@ -304,7 +304,7 @@ public class IDTF    {
             {
             	 if(listefichiers[k].endsWith(".xml")==true)
             	 {             
-		            File fXmlFile = new File("C:/Users/Mehdi/Desktop/B/"+listefichiers[k]);
+		            File fXmlFile = new File("C:\\Users\\oussama\\Desktop\\brevet\\"+listefichiers[k]);
 		            Document doc = dBuilder.parse(fXmlFile);
 		            
 		            doc.getDocumentElement().normalize();
@@ -468,6 +468,24 @@ public class IDTF    {
     val=CosineSimilarity.cosineSimilarity(ligne0, ligne1);
    
     System.out.println(val);
+    
+    double[] exemple0=getLigne(mat,0);
+    double[] exemple1=getLigne(mat,2);
+    double[] exemple2=getLigne(mat,4);
+    ArrayList<double[]> exemples=new ArrayList<double[]>(3);
+    exemples.add(exemple0);
+    exemples.add(exemple1);
+    exemples.add(exemple2);
+    
+    //ArrayList<ArrayList<Integer>> categories=CosineSimilarity.categories(mat, exemples);
+    /*for (int k=0; k<3; k++) {
+    	String s="";
+    	for (int p=0; p<categories.get(k).size(); p++) {
+    		s=s+categories.get(k).get(p).toString();
+    	}
+    	System.out.println(s);
+    }
+    */
 }
 
     
