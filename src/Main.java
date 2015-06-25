@@ -22,6 +22,7 @@ public class Main {
 		Kmeans moyenne = new Kmeans(donne,2 )	;
 		moyenne.calculateClusters();
 		ArrayList[] liste = moyenne.getClusters();
+		moyenne.getPourcentage();
 	
 	
 	//	LectureListe.lectureListe("data/stopword.txt");

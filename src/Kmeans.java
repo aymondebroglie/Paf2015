@@ -157,10 +157,38 @@ public class  Kmeans{
     			 
     			 
     		 }
-    		System.out.println("il y a " + nbrecluster + "Clusters"); 
+    		System.out.println(" \n il y a " + nbrecluster + " élements dans ce Cluster"); 
     	 }
          return clusters;
     }
+     
+     private double getPourcentageclust(int k){
+    	 double pourcentage;
+    	 int total =0;
+    	 int ceCluster = 0;
+    	 for (int j = 0 ; j < numClusters ; j++){
+    		 for (int i = 0 ; i < clusters[j].size(); i++)
+    		 {
+    			    total +=1 ;
+    			 
+    		 }
+    	 }
+    	 
+    		 for (int i = 0 ; i < clusters[k].size(); i++)
+    		 {
+    			    ceCluster +=1 ;
+    			 
+    		 }
+    		pourcentage = ceCluster*100/total;
+    	 
+         return pourcentage;
+     }
+     
+     public void getPourcentage(){
+    	 for (int k =0 ; k < numClusters ; k++){
+    		 System.out.println( "Cluster n" + k + "Pourcentage : " +getPourcentageclust(k));
+    	 }
+     }
  
      private void assignData()
     {
