@@ -210,8 +210,8 @@ public class IDTF    {
 	  
    
 
-	public static double max4(double arg1, double arg2, double arg3, double arg4){
-		return Math.max(arg1,Math.max(arg2, Math.max(arg3, arg4)));
+	public static double max5(double arg1, double arg2, double arg3, double arg4, double arg5){
+		return Math.max(Math.max(arg5, arg1),Math.max(arg2, Math.max(arg3, arg4)));
 		
 	}
 
@@ -608,12 +608,11 @@ public class IDTF    {
         }
 		ArrayList<String> listeStop = LectureListe.lectureListe("C:/Users/Mehdi/Documents/stopword.txt");
 		int compt=0;
+		IDTF.ajoutEx("C:/Users/Mehdi/Desktop/aero", tout, listTitre);
 		IDTF.ajoutEx("C:/Users/Mehdi/Desktop/auto", tout, listTitre);
+		IDTF.ajoutEx("C:/Users/Mehdi/Desktop/cosme", tout, listTitre);
+		IDTF.ajoutEx("C:/Users/Mehdi/Desktop/energie", tout, listTitre);
 		IDTF.ajoutEx("C:/Users/Mehdi/Desktop/sciencemed", tout, listTitre);
-		//IDTF.ajoutEx("C:/Users/Mehdi/Desktop/aero", tout, listTitre);
-		//IDTF.ajoutEx("C:/Users/Mehdi/Desktop/cosme", tout, listTitre);
-	//	IDTF.ajoutEx("C:/Users/Mehdi/Desktop/energie", tout, listTitre);
-		
 		for(int k=0;k<tout.size(); k++)
 		{
 			//System.out.println(tout.get(k));
@@ -743,36 +742,68 @@ public class IDTF    {
     int[] brevAuto= new int[nombreDoc(aI)];	
     int[] brevMed= new int[nombreDoc(aI)];	
     int p=0;
+    ArrayList<String> listBrevet= new ArrayList<String>();
     double[] auto= new double[nombreDoc(aI)-1];   //cosine simi par rapport au fichier exemple 1 (le dernier ajouté), ici automobile
     double[] med= new double[nombreDoc(aI)-1];     // cose simi pr au 2nd fichier exemple, l'avant dernier ajouté
-    for(int k=0; k<nombreDoc(aI)-20;k++)
+    double[] ener= new double[nombreDoc(aI)-1]; 
+    double[] aero= new double[nombreDoc(aI)-1]; 
+    double[] cosme= new double[nombreDoc(aI)-1]; 
+    
+    
+    for(int k=0; k<nombreDoc(aI)-50;k++)
     {
     	for(int u=0;u<10;u++)
     	{
-       auto[k]+= CosineSimilarity.cosineSimilarity(getLigne(mat, k), getLigne(mat, nombreDoc(aI)-11-u));        //avant dernier ex
-       med[k]+= CosineSimilarity.cosineSimilarity(getLigne(mat, k), getLigne(mat, nombreDoc(aI)-1-u));         // dernier ex
+       aero[k]+= CosineSimilarity.cosineSimilarity(getLigne(mat, k), getLigne(mat, nombreDoc(aI)-41-u));      
+       auto[k]+= CosineSimilarity.cosineSimilarity(getLigne(mat, k), getLigne(mat, nombreDoc(aI)-31-u));  
+       cosme[k]+= CosineSimilarity.cosineSimilarity(getLigne(mat, k), getLigne(mat, nombreDoc(aI)-21-u));
+       ener[k]+= CosineSimilarity.cosineSimilarity(getLigne(mat, k), getLigne(mat, nombreDoc(aI)-11-u));
+       med[k]+= CosineSimilarity.cosineSimilarity(getLigne(mat, k), getLigne(mat, nombreDoc(aI)-1-u));    // dernier ex
     	}
-       if(med[k]>auto[k])
+    	if(IDTF.max5(aero[k], auto[k], cosme[k], ener[k], med[k])==aero[k] && aero[k]>0.2)
+    	
        {
-    	   brevMed[p]=k;
-    	   brevAuto[p]=-1;
-    	   p++;
+           listBrevet.add("aero");
+    	 //  brevMed[p]=k;
+    	   
+    	   
+    	  // brevAuto[p]=-1;
+    	  // p++;
        }
-       if(med[k]<auto[k])
+      	if(IDTF.max5(aero[k], auto[k], cosme[k], ener[k], med[k])==auto[k]&& auto[k]>0.5)
        {
-    	   brevMed[p]=-1;
-    	   brevAuto[p]=k;
-    	   p++;
+      	   listBrevet.add("auto");	
+    	  // brevMed[p]=-1;
+    	  // brevAuto[p]=k;
+    	  // p++;
        }
-       
+      	if(IDTF.max5(aero[k], auto[k], cosme[k], ener[k], med[k])==cosme[k] && cosme[k]>0.5)
+      	{
+      		listBrevet.add("cosme");
+      	}
+      	if(IDTF.max5(aero[k], auto[k], cosme[k], ener[k], med[k])==ener[k]&& ener[k]>0.5)
+      	{
+      		listBrevet.add("energie");
+      	}
+      	if(IDTF.max5(aero[k], auto[k], cosme[k], ener[k], med[k])==med[k]&& med[k]>0.5)
+      	{
+      		listBrevet.add("medecine");
+      	}
+      	if(IDTF.max5(aero[k], auto[k], cosme[k], ener[k], med[k])<=0.5)
+      			{
+      				listBrevet.add("indetermine");
+      			}
     	   
     }
     
-    for (int k=0; k<nombreDoc(aI)-20; k++){
-    	System.out.println(brevMed[k]+" et pour l'auto: "+brevAuto[k]);   
+   /* for (int k=0; k<nombreDoc(aI)-50; k++){
+    	System.out.println(k+ "\n"+"    aero    "+ aero[k]);
+    	System.out.println("auto    "+ auto[k]);
+    	System.out.println("cosme   "+ cosme[k]);
+    	System.out.println("ener    "+ ener[k]);
+    	System.out.println("sciMed  "+ med[k]);
     }
-    
-    
+    */
 
     /*ArrayList<String> truc= new ArrayList<String>();
     truc=IDTF.getTheme(mat, compt);
@@ -785,7 +816,12 @@ public class IDTF    {
 	   System.out.println(putin.get(k).getNomVille()+"   "+putin.get(k).getPourcentage());
    }
    */
-
+    ArrayList<SebVille> putin= new ArrayList<SebVille>();
+    putin=CalculOccurenceVille.calculOccurenceVille(listBrevet, 0.1);
+    for (int k=0; k<putin.size();k++)
+    {
+ 	   System.out.println(putin.get(k).getNomVille()+"   "+putin.get(k).getPourcentage());
+    }
 }
 
     
