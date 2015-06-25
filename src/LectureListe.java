@@ -26,7 +26,7 @@ public class LectureListe {
 		 linetoread = br.readLine();
 		while( linetoread != null){
 			resultat.add(linetoread);
-			System.out.println(linetoread);
+			//System.out.println(linetoread);
 			linetoread = br.readLine();
 		}
 			return resultat;
