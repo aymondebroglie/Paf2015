@@ -6,28 +6,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -537,7 +515,7 @@ public class IDTF    {
 		
 		try {
 			 
-			 File repertoire= new File("C:/Users/Mehdi/Desktop/tr");
+			 File repertoire= new File("C:/Users/Mehdi/Desktop/tr/testAuto");
 			 String[] listefichiers = repertoire.list();
             
             
@@ -548,9 +526,9 @@ public class IDTF    {
             {
             	 if(listefichiers[k].endsWith(".xml")==true)
             	 {             
-		            File fXmlFile = new File("C:/Users/Mehdi/Desktop/tr/"+listefichiers[k]);
+		            File fXmlFile = new File("C:/Users/Mehdi/Desktop/tr/testAuto/"+listefichiers[k]);
 		            Document doc = dBuilder.parse(fXmlFile);
-		            fXmlFile.renameTo(new File("C:/Users/Mehdi/Desktop/tr/"+k+".xml"));
+		            //fXmlFile.renameTo(new File("C:/Users/Mehdi/Desktop/tr/testMed/"+k+".xml"));
 		            
 		            doc.getDocumentElement().normalize();
 		            NodeList nList = doc.getElementsByTagName("abstract");
@@ -606,20 +584,19 @@ public class IDTF    {
         } catch (Exception e) {
             e.printStackTrace();
         }
+		IDTF.ajoutEx("C:/Users/Mehdi/Desktop/tr/testAero", tout, listTitre);
+		IDTF.ajoutEx("C:/Users/Mehdi/Desktop/tr/testCosm", tout, listTitre);
+		IDTF.ajoutEx("C:/Users/Mehdi/Desktop/tr/testEner", tout, listTitre);
+		IDTF.ajoutEx("C:/Users/Mehdi/Desktop/tr/testMed", tout, listTitre);
+		
+		
 		ArrayList<String> listeStop = LectureListe.lectureListe("C:/Users/Mehdi/Documents/stopword.txt");
-		int compt=0;
 		IDTF.ajoutEx("C:/Users/Mehdi/Desktop/aero", tout, listTitre);
 		IDTF.ajoutEx("C:/Users/Mehdi/Desktop/auto", tout, listTitre);
 		IDTF.ajoutEx("C:/Users/Mehdi/Desktop/cosme", tout, listTitre);
 		IDTF.ajoutEx("C:/Users/Mehdi/Desktop/energie", tout, listTitre);
 		IDTF.ajoutEx("C:/Users/Mehdi/Desktop/sciencemed", tout, listTitre);
-		for(int k=0;k<tout.size(); k++)
-		{
-			//System.out.println(tout.get(k));
-		}
 		
-	//	lectTxt("C:/Users/Mehdi/Downloads/cea.txt", tout, listTitre);
-
 		
         for (int k=0; k<tout.size();k++) 
         {	
@@ -716,6 +693,7 @@ public class IDTF    {
     	
     	
     	
+    	
     	/*Kmeans moy= new Kmeans(mat, 9);
     	moy.calculateClusters();
     	moy.getClusters();
@@ -750,78 +728,81 @@ public class IDTF    {
     double[] cosme= new double[nombreDoc(aI)-1]; 
     
     
-    for(int k=0; k<nombreDoc(aI)-50;k++)
+    for(int k=0; k<nombreDoc(aI)-100;k++)
     {
-    	for(int u=0;u<10;u++)
+    	for(int u=0;u<20;u++)
     	{
-       aero[k]+= CosineSimilarity.cosineSimilarity(getLigne(mat, k), getLigne(mat, nombreDoc(aI)-41-u));      
-       auto[k]+= CosineSimilarity.cosineSimilarity(getLigne(mat, k), getLigne(mat, nombreDoc(aI)-31-u));  
-       cosme[k]+= CosineSimilarity.cosineSimilarity(getLigne(mat, k), getLigne(mat, nombreDoc(aI)-21-u));
-       ener[k]+= CosineSimilarity.cosineSimilarity(getLigne(mat, k), getLigne(mat, nombreDoc(aI)-11-u));
+       aero[k]+= CosineSimilarity.cosineSimilarity(getLigne(mat, k), getLigne(mat, nombreDoc(aI)-81-u));      
+       auto[k]+= CosineSimilarity.cosineSimilarity(getLigne(mat, k), getLigne(mat, nombreDoc(aI)-61-u));  
+       cosme[k]+= CosineSimilarity.cosineSimilarity(getLigne(mat, k), getLigne(mat, nombreDoc(aI)-41-u));
+       ener[k]+= CosineSimilarity.cosineSimilarity(getLigne(mat, k), getLigne(mat, nombreDoc(aI)-21-u));
        med[k]+= CosineSimilarity.cosineSimilarity(getLigne(mat, k), getLigne(mat, nombreDoc(aI)-1-u));    // dernier ex
     	}
-    	if(IDTF.max5(aero[k], auto[k], cosme[k], ener[k], med[k])==aero[k] && aero[k]>0.2)
+    	if(IDTF.max5(aero[k], auto[k], cosme[k], ener[k], med[k])==aero[k]) //&& aero[k]>0.2)
     	
        {
            listBrevet.add("aero");
-    	 //  brevMed[p]=k;
+    	 System.out.println("aero  "+ aero[k]);
     	   
     	   
     	  // brevAuto[p]=-1;
     	  // p++;
        }
-      	if(IDTF.max5(aero[k], auto[k], cosme[k], ener[k], med[k])==auto[k]&& auto[k]>0.5)
+      	if(IDTF.max5(aero[k], auto[k], cosme[k], ener[k], med[k])==auto[k])
        {
       	   listBrevet.add("auto");	
-    	  // brevMed[p]=-1;
-    	  // brevAuto[p]=k;
-    	  // p++;
+      	 System.out.println("auto  "+ auto[k]);
        }
-      	if(IDTF.max5(aero[k], auto[k], cosme[k], ener[k], med[k])==cosme[k] && cosme[k]>0.5)
+      	if(IDTF.max5(aero[k], auto[k], cosme[k], ener[k], med[k])==cosme[k] )
       	{
       		listBrevet.add("cosme");
+      		System.out.println("cosme  "+ cosme[k]);
       	}
-      	if(IDTF.max5(aero[k], auto[k], cosme[k], ener[k], med[k])==ener[k]&& ener[k]>0.5)
+      	if(IDTF.max5(aero[k], auto[k], cosme[k], ener[k], med[k])==ener[k])
       	{
       		listBrevet.add("energie");
+      		System.out.println("ener  "+ ener[k]);
       	}
-      	if(IDTF.max5(aero[k], auto[k], cosme[k], ener[k], med[k])==med[k]&& med[k]>0.5)
+      	if(IDTF.max5(aero[k], auto[k], cosme[k], ener[k], med[k])==med[k])
       	{
       		listBrevet.add("medecine");
+      		System.out.println("medecine  "+ med[k]);
       	}
-      	if(IDTF.max5(aero[k], auto[k], cosme[k], ener[k], med[k])<=0.5)
+      	/*if(IDTF.max5(aero[k], auto[k], cosme[k], ener[k], med[k])<=1)
       			{
       				listBrevet.add("indetermine");
       			}
-    	   
+    	  */
     }
     
-   /* for (int k=0; k<nombreDoc(aI)-50; k++){
+  /*  for (int k=0; k<nombreDoc(aI)-50; k++){
     	System.out.println(k+ "\n"+"    aero    "+ aero[k]);
     	System.out.println("auto    "+ auto[k]);
     	System.out.println("cosme   "+ cosme[k]);
     	System.out.println("ener    "+ ener[k]);
     	System.out.println("sciMed  "+ med[k]);
-    }
-    */
+    }*/
+    
 
-    /*ArrayList<String> truc= new ArrayList<String>();
-    truc=IDTF.getTheme(mat, compt);
-    ArrayList<SebVille> putin= new ArrayList<SebVille>();
-    putin=CalculOccurenceVille.calculOccurenceVille(truc, 0.01);
+   // ArrayList<String> truc= new ArrayList<String>();
+   // truc=IDTF.getTheme(mat, compt);
+    ArrayList<SebVille> occ= new ArrayList<SebVille>();
     
     
-    
+ /*   
    for (int k=0; k<putin.size();k++){
 	   System.out.println(putin.get(k).getNomVille()+"   "+putin.get(k).getPourcentage());
-   }
-   */
-    ArrayList<SebVille> putin= new ArrayList<SebVille>();
-    putin=CalculOccurenceVille.calculOccurenceVille(listBrevet, 0.1);
-    for (int k=0; k<putin.size();k++)
+   }*/
+  
+    occ=CalculOccurenceVille.calculOccurenceVille(listBrevet, 0.1);
+    for (int k=0; k<5;k++)
     {
- 	   System.out.println(putin.get(k).getNomVille()+"   "+putin.get(k).getPourcentage());
+ 	   System.out.println(occ.get(k).getNomVille()+"   "+occ.get(k).getPourcentage());
+    	/*if(k==10 || k==20 || k==30 || k==40)
+    		System.out.println("Changement    ");
+    	System.out.println(listBrevet.get(k));*/
     }
+
 }
 
     
