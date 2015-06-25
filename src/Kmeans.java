@@ -1,5 +1,4 @@
-// Kmeans.java 
- 
+
  
 import java.util.Random;
 import java.util.ArrayList;
@@ -143,11 +142,13 @@ public class  Kmeans{
  
      public ArrayList[] getClusters()
     {
+    	 int nbrecluster ;
     	 for (int k = 0 ; k < numClusters; k++){
+    		 nbrecluster = 0;
     		 System.out.println(" \n Cluster " + k);
     		 for (int i = 0 ; i < clusters[k].size(); i++)
     		 {
-    			    
+    			    nbrecluster +=1 ;
     				 double [] tableau = (double [] ) clusters[k].get(i);
     				 System.out.println(" \n Element " + i);
     				 for(int j = 0 ; j < tableau.length;j++){
@@ -156,7 +157,7 @@ public class  Kmeans{
     			 
     			 
     		 }
-    		 
+    		System.out.println("il y a " + nbrecluster + "Clusters"); 
     	 }
          return clusters;
     }
