@@ -515,7 +515,7 @@ public class IDTF    {
 		
 		try {
 			 
-			 File repertoire= new File("C:/Users/Mehdi/Desktop/tr/testAuto");
+			 File repertoire= new File("C:/Users/Mehdi/Desktop/test");
 			 String[] listefichiers = repertoire.list();
             
             
@@ -526,9 +526,9 @@ public class IDTF    {
             {
             	 if(listefichiers[k].endsWith(".xml")==true)
             	 {             
-		            File fXmlFile = new File("C:/Users/Mehdi/Desktop/tr/testAuto/"+listefichiers[k]);
+		            File fXmlFile = new File("C:/Users/Mehdi/Desktop/test/"+listefichiers[k]);
 		            Document doc = dBuilder.parse(fXmlFile);
-		            //fXmlFile.renameTo(new File("C:/Users/Mehdi/Desktop/tr/testMed/"+k+".xml"));
+		            fXmlFile.renameTo(new File("C:/Users/Mehdi/Desktop/test/"+"Re"+k+".xml"));
 		            
 		            doc.getDocumentElement().normalize();
 		            NodeList nList = doc.getElementsByTagName("abstract");
@@ -584,10 +584,7 @@ public class IDTF    {
         } catch (Exception e) {
             e.printStackTrace();
         }
-		IDTF.ajoutEx("C:/Users/Mehdi/Desktop/tr/testAero", tout, listTitre);
-		IDTF.ajoutEx("C:/Users/Mehdi/Desktop/tr/testCosm", tout, listTitre);
-		IDTF.ajoutEx("C:/Users/Mehdi/Desktop/tr/testEner", tout, listTitre);
-		IDTF.ajoutEx("C:/Users/Mehdi/Desktop/tr/testMed", tout, listTitre);
+		
 		
 		
 		ArrayList<String> listeStop = LectureListe.lectureListe("C:/Users/Mehdi/Documents/stopword.txt");
@@ -598,6 +595,8 @@ public class IDTF    {
 		IDTF.ajoutEx("C:/Users/Mehdi/Desktop/sciencemed", tout, listTitre);
 		
 		
+		System.out.println("Ajout des exemples");
+		
         for (int k=0; k<tout.size();k++) 
         {	
         	if(listeStop.contains(tout.get(k)))
@@ -605,7 +604,7 @@ public class IDTF    {
 
         }
 		
-       
+        System.out.println("Suppression des élements stopliste dans tout");
         
         for (int p=0; p< listTitre.size();p++) 
         {   
@@ -615,11 +614,12 @@ public class IDTF    {
         				listTitre.get(p)[t]="";
         	}
         }
-        
+        System.out.println("Supp dans listTitre effectué");
 		
 		ArrayList<IDTF> repFre= new ArrayList<IDTF>();        //contient les idf
 		ArrayList<IDTF> repFreq= new ArrayList<IDTF>();       // contient les tf
 		ArrayList<IDTF> aI= new ArrayList<IDTF>(); 
+		
 		for (int k1=0; k1<tout.size();k1++)
     	{
         	tout.set(k1,tout.get(k1).replaceAll("[\r\n]+", ""));
@@ -632,6 +632,7 @@ public class IDTF    {
         	
     	}
 
+		System.out.println("Remplacement das tout");
 		
         for (String s : tout) 
         {	
@@ -643,7 +644,7 @@ public class IDTF    {
     		repFre.add(idtf);
 
         }
-       
+        System.out.println("Calcul IDF");
         
         for (int p=0; p< listTitre.size();p++) 
         {   	
@@ -659,7 +660,7 @@ public class IDTF    {
         	}
         }
      
-        
+        System.out.println("Remplacement dans listTitre");
 
         
         
@@ -673,7 +674,9 @@ public class IDTF    {
         	}	
         }
         
-      
+        System.out.println("Calcul TF");
+        
+        
       for(int p=0; p<repFreq.size(); p++)           //aI contient dorenavant les valeurs correctes des IDTF
         {
         	
@@ -682,24 +685,19 @@ public class IDTF    {
 	        		idtf.setIdtf(0);
 	        	aI.add(p,idtf );                                                                
         }
+      System.out.println("Calcul IDTF");
+      
       
         Set<String> mySet = new HashSet<String>(tout);           //permet d'éliminer les occurences
         ArrayList<String> dico = new ArrayList<String>(mySet);
-        
+        System.out.println("Dico");
     	TableDeHachageIDTF table= new TableDeHachageIDTF();
     	table.init(dico);
     	double [][] mat = new double[nombreDoc(aI)][dico.size()];    
     	mat=getMat(dico, aI);     //créer la matrice dont chaque ligne est la valeur des IDTF du doc
     	
     	
-    	
-    	
-    	/*Kmeans moy= new Kmeans(mat, 9);
-    	moy.calculateClusters();
-    	moy.getClusters();
-    	
-*/
-    	
+    	System.out.println("Obtention matrice");
    
     	
     	
@@ -715,11 +713,7 @@ public class IDTF    {
 
     	
     	
-    // Voici un exemple de comment on calcule la CosineSimilarity entre 2 vecteurs (pour les courageux qui auront lu jusqu'au bout^^)	
-   
-    int[] brevAuto= new int[nombreDoc(aI)];	
-    int[] brevMed= new int[nombreDoc(aI)];	
-    int p=0;
+
     ArrayList<String> listBrevet= new ArrayList<String>();
     double[] auto= new double[nombreDoc(aI)-1];   //cosine simi par rapport au fichier exemple 1 (le dernier ajouté), ici automobile
     double[] med= new double[nombreDoc(aI)-1];     // cose simi pr au 2nd fichier exemple, l'avant dernier ajouté
@@ -730,6 +724,7 @@ public class IDTF    {
     
     for(int k=0; k<nombreDoc(aI)-100;k++)
     {
+    	System.out.println("Et d'un doc, plus que" + (nombreDoc(aI)-100-k));
     	for(int u=0;u<20;u++)
     	{
        aero[k]+= CosineSimilarity.cosineSimilarity(getLigne(mat, k), getLigne(mat, nombreDoc(aI)-81-u));      
@@ -742,50 +737,42 @@ public class IDTF    {
     	
        {
            listBrevet.add("aero");
-    	 System.out.println("aero  "+ aero[k]);
+        
     	   
     	   
     	  // brevAuto[p]=-1;
     	  // p++;
        }
-      	if(IDTF.max5(aero[k], auto[k], cosme[k], ener[k], med[k])==auto[k])
+      	if(IDTF.max5(aero[k], auto[k], cosme[k], ener[k], med[k])==auto[k] && auto[k]>0.5)
        {
       	   listBrevet.add("auto");	
-      	 System.out.println("auto  "+ auto[k]);
+      	// System.out.println("auto  "+ auto[k]);
        }
-      	if(IDTF.max5(aero[k], auto[k], cosme[k], ener[k], med[k])==cosme[k] )
+      	if(IDTF.max5(aero[k], auto[k], cosme[k], ener[k], med[k])==cosme[k] && cosme[k]>0.5 )
       	{
       		listBrevet.add("cosme");
-      		System.out.println("cosme  "+ cosme[k]);
+      		//System.out.println("cosme  "+ cosme[k]);
       	}
-      	if(IDTF.max5(aero[k], auto[k], cosme[k], ener[k], med[k])==ener[k])
+      	if(IDTF.max5(aero[k], auto[k], cosme[k], ener[k], med[k])==ener[k] && ener[k]>0.5)
       	{
       		listBrevet.add("energie");
-      		System.out.println("ener  "+ ener[k]);
+      		//System.out.println("ener  "+ ener[k]);
       	}
-      	if(IDTF.max5(aero[k], auto[k], cosme[k], ener[k], med[k])==med[k])
+      	if(IDTF.max5(aero[k], auto[k], cosme[k], ener[k], med[k])==med[k] && med[k]>0.5)
       	{
       		listBrevet.add("medecine");
-      		System.out.println("medecine  "+ med[k]);
+      		//System.out.println("medecine  "+ med[k]);
       	}
-      	/*if(IDTF.max5(aero[k], auto[k], cosme[k], ener[k], med[k])<=1)
+      	if(IDTF.max5(aero[k], auto[k], cosme[k], ener[k], med[k])<=0.5)
       			{
       				listBrevet.add("indetermine");
       			}
-    	  */
+    	  
     }
     
-  /*  for (int k=0; k<nombreDoc(aI)-50; k++){
-    	System.out.println(k+ "\n"+"    aero    "+ aero[k]);
-    	System.out.println("auto    "+ auto[k]);
-    	System.out.println("cosme   "+ cosme[k]);
-    	System.out.println("ener    "+ ener[k]);
-    	System.out.println("sciMed  "+ med[k]);
-    }*/
-    
+ 
+    System.out.println("Calcul de staaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaat");
 
-   // ArrayList<String> truc= new ArrayList<String>();
-   // truc=IDTF.getTheme(mat, compt);
     ArrayList<SebVille> occ= new ArrayList<SebVille>();
     
     
@@ -795,7 +782,7 @@ public class IDTF    {
    }*/
   
     occ=CalculOccurenceVille.calculOccurenceVille(listBrevet, 0.1);
-    for (int k=0; k<5;k++)
+    for (int k=0; k<6;k++)
     {
  	   System.out.println(occ.get(k).getNomVille()+"   "+occ.get(k).getPourcentage());
     	/*if(k==10 || k==20 || k==30 || k==40)
